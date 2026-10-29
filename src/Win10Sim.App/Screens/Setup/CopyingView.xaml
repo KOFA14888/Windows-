@@ -1,0 +1,57 @@
+<UserControl x:Class="Win10Sim.App.Screens.Setup.CopyingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             FontFamily="{StaticResource Font.Ui}">
+
+    <Grid Background="{StaticResource Brush.SetupBackground}">
+        <StackPanel VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Width="560">
+
+            <TextBlock Text="{DynamicResource L.Copy.Title}"
+                       FontFamily="{StaticResource Font.Light}"
+                       FontSize="26"
+                       Foreground="{StaticResource Brush.Text.Primary}" />
+
+            <ProgressBar x:Name="Progress"
+                         Style="{StaticResource ProgressBar.Setup}"
+                         Minimum="0" Maximum="100"
+                         Margin="0,30,0,10" />
+
+            <Grid>
+                <TextBlock x:Name="StageText"
+                           Style="{StaticResource Text.Body}"
+                           HorizontalAlignment="Left" />
+                <TextBlock x:Name="PercentText"
+                           Style="{StaticResource Text.Body}"
+                           HorizontalAlignment="Right" />
+            </Grid>
+
+            <TextBlock x:Name="DetailText"
+                       Style="{StaticResource Text.Caption}"
+                       Margin="0,8,0,0"
+                       TextTrimming="CharacterEllipsis" />
+
+            <TextBlock Text="{DynamicResource L.Copy.Note}"
+                       Style="{StaticResource Text.Caption}"
+                       Margin="0,46,0,0"
+                       HorizontalAlignment="Center"
+                       TextAlignment="Center" />
+
+            <TextBlock x:Name="RebootHint"
+                       Text="{DynamicResource L.Copy.RebootSoon}"
+                       Style="{StaticResource Text.Body}"
+                       Margin="0,14,0,0"
+                       HorizontalAlignment="Center"
+                       TextAlignment="Center"
+                       Visibility="Collapsed" />
+        </StackPanel>
+
+        <TextBlock Text="{DynamicResource L.Hint.Insert}"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom"
+                   Margin="0,0,28,22"
+                   FontSize="12"
+                   Foreground="#4A4A4A" />
+    </Grid>
+</UserControl>

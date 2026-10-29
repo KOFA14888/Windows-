@@ -1,0 +1,114 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+    <!--
+        Строки интерфейса (русский). Все обращения в XAML — через {DynamicResource},
+        поэтому смена словаря немедленно перерисовывает интерфейс.
+    -->
+
+    <!-- Общие -->
+    <sys:String x:Key="L.Next">Далее</sys:String>
+    <sys:String x:Key="L.Back">Назад</sys:String>
+    <sys:String x:Key="L.Cancel">Отмена</sys:String>
+    <sys:String x:Key="L.Install">Установить</sys:String>
+    <sys:String x:Key="L.Hint.Insert">Insert — выход на рабочий стол</sys:String>
+    <sys:String x:Key="L.Hint.Esc">Esc — назад</sys:String>
+
+    <!-- Экран языка -->
+    <sys:String x:Key="L.Language.Title">Windows 10</sys:String>
+    <sys:String x:Key="L.Language.InstallLanguage">Язык для установки</sys:String>
+    <sys:String x:Key="L.Language.TimeFormat">Формат времени и денежных единиц</sys:String>
+    <sys:String x:Key="L.Language.Keyboard">Клавиатура или способ ввода</sys:String>
+
+    <!-- Install Now -->
+    <sys:String x:Key="L.InstallNow.Title">Windows 10</sys:String>
+    <sys:String x:Key="L.InstallNow.Subtitle">Установка Windows 10 на этот компьютер.</sys:String>
+    <sys:String x:Key="L.InstallNow.Button">Установить сейчас</sys:String>
+    <sys:String x:Key="L.InstallNow.Troubleshoot">Восстановление компьютера</sys:String>
+    <sys:String x:Key="L.InstallNow.TroubleshootHint">Пропуск установки и переход к средствам восстановления (в симуляторе недоступно)</sys:String>
+    <sys:String x:Key="L.InstallNow.Legal">© Корпорация Майкрософт. Все права защищены. Демонстрационный симулятор.</sys:String>
+
+    <!-- Ключ продукта -->
+    <sys:String x:Key="L.Key.Title">Активация Windows</sys:String>
+    <sys:String x:Key="L.Key.Subtitle">Введите ключ продукта, чтобы активировать Windows.</sys:String>
+    <sys:String x:Key="L.Key.Label">Ключ продукта</sys:String>
+    <sys:String x:Key="L.Key.NoKey">У меня нет ключа продукта</sys:String>
+    <sys:String x:Key="L.Key.Hint">Ключ продукта указан на наклейке на корпусе компьютера или в письме с подтверждением покупки.</sys:String>
+    <sys:String x:Key="L.Key.NoKeyHint">Без ключа Windows будет установлена без активации. Выбрать редакцию можно вручную.</sys:String>
+    <sys:String x:Key="L.Key.Error.Empty">Введите ключ продукта.</sys:String>
+    <sys:String x:Key="L.Key.Error.WrongLength">Ключ продукта должен состоять из 25 символов.</sys:String>
+    <sys:String x:Key="L.Key.Error.InvalidCharacters">Ключ содержит недопустимые символы. Допустимы цифры 2–9 и латинские буквы, кроме I, O, S, B, L.</sys:String>
+    <sys:String x:Key="L.Key.Error.InvalidKey">Указанный ключ продукта недействителен.</sys:String>
+
+    <!-- Редакция -->
+    <sys:String x:Key="L.Edition.Title">Выберите редакцию</sys:String>
+    <sys:String x:Key="L.Edition.Subtitle">Выберите редакцию Windows 10, которую требуется установить.</sys:String>
+    <sys:String x:Key="L.Edition.Home.Description">Базовая редакция для домашнего использования.</sys:String>
+    <sys:String x:Key="L.Edition.Pro.Description">BitLocker, Hyper-V, удалённый рабочий стол, домен.</sys:String>
+    <sys:String x:Key="L.Edition.Enterprise.Description">Расширенные средства управления и защиты для организаций.</sys:String>
+    <sys:String x:Key="L.Edition.FromKey">Редакция определена ключом продукта.</sys:String>
+
+    <!-- EULA -->
+    <sys:String x:Key="L.Eula.Title">Условия лицензии</sys:String>
+    <sys:String x:Key="L.Eula.Subtitle">Применимые уведомления и условия лицензии.</sys:String>
+    <sys:String x:Key="L.Eula.Accept">Я принимаю условия лицензионного соглашения</sys:String>
+    <sys:String x:Key="L.Eula.ScrollHint">Прокрутите текст до конца, чтобы принять условия.</sys:String>
+    <sys:String x:Key="L.Eula.Ready">Можно принимать условия.</sys:String>
+
+    <!-- Тип установки -->
+    <sys:String x:Key="L.InstallType.Title">Выберите тип установки</sys:String>
+    <sys:String x:Key="L.InstallType.Subtitle">Выберите вариант установки Windows 10.</sys:String>
+    <sys:String x:Key="L.InstallType.Upgrade">Обновление: установка Windows с сохранением файлов, параметров и программ</sys:String>
+    <sys:String x:Key="L.InstallType.Upgrade.Disabled">Недоступно при загрузке программы установки с носителя.</sys:String>
+    <sys:String x:Key="L.InstallType.Custom">Выборочная: установка только Windows (расширенные возможности)</sys:String>
+    <sys:String x:Key="L.InstallType.Custom.Description">Файлы, параметры и программы не сохраняются. Разделы диска можно изменить.</sys:String>
+
+    <!-- Диск -->
+    <sys:String x:Key="L.Disk.Title">Где вы хотите установить Windows?</sys:String>
+    <sys:String x:Key="L.Disk.Subtitle">Выберите раздел, на который будет установлена Windows, или создайте новый.</sys:String>
+    <sys:String x:Key="L.Disk.Drive">Диск {0}</sys:String>
+    <sys:String x:Key="L.Disk.Partition">Раздел {0}</sys:String>
+    <sys:String x:Key="L.Disk.Unallocated">Незанятое пространство на диске {0}</sys:String>
+    <sys:String x:Key="L.Disk.Type.Primary">Основной</sys:String>
+    <sys:String x:Key="L.Disk.Type.Efi">Система (EFI)</sys:String>
+    <sys:String x:Key="L.Disk.Type.Recovery">Восстановление</sys:String>
+    <sys:String x:Key="L.Disk.Size">Общий размер: {0}</sys:String>
+    <sys:String x:Key="L.Disk.Free">Свободно: {0}</sys:String>
+    <sys:String x:Key="L.Disk.Format">Форматировать</sys:String>
+    <sys:String x:Key="L.Disk.Refresh">Обновить</sys:String>
+    <sys:String x:Key="L.Disk.Warning">Установка Windows на этот раздел приведёт к удалению всех файлов на нём.</sys:String>
+    <sys:String x:Key="L.Unit.GB">ГБ</sys:String>
+    <sys:String x:Key="L.Unit.MB">МБ</sys:String>
+    <sys:String x:Key="L.Disk.FormatTitle">Форматирование раздела</sys:String>
+    <sys:String x:Key="L.Disk.FormatQuick">Быстрое форматирование (NTFS)</sys:String>
+    <sys:String x:Key="L.Disk.FormatCreating">Создание файловой системы…</sys:String>
+    <sys:String x:Key="L.Disk.FormatDone">Раздел отформатирован.</sys:String>
+    <sys:String x:Key="L.Disk.NoSelection">Выберите раздел из списка.</sys:String>
+    <sys:String x:Key="L.Disk.MustFormat">Перед установкой раздел нужно отформатировать.</sys:String>
+
+    <!-- Установка -->
+    <sys:String x:Key="L.Copy.Title">Установка Windows</sys:String>
+    <sys:String x:Key="L.Copy.Stage.CopyingFiles">Копирование файлов Windows</sys:String>
+    <sys:String x:Key="L.Copy.Stage.InstallingComponents">Установка компонентов</sys:String>
+    <sys:String x:Key="L.Copy.Stage.InstallingUpdates">Установка обновлений</sys:String>
+    <sys:String x:Key="L.Copy.Stage.Finishing">Завершение установки</sys:String>
+    <sys:String x:Key="L.Copy.Percent">{0} %</sys:String>
+    <sys:String x:Key="L.Copy.Note">Компьютер несколько раз перезагрузится. Не выключайте его.</sys:String>
+    <sys:String x:Key="L.Copy.RebootSoon">Компьютер перезагрузится через несколько секунд.</sys:String>
+
+    <!-- Перезагрузка -->
+    <sys:String x:Key="L.Reboot.Title">Перезагрузка</sys:String>
+    <sys:String x:Key="L.Reboot.Subtitle">Установка продолжается. Не выключайте компьютер.</sys:String>
+
+    <!-- Заглушка ЭТАПА 2 -->
+    <sys:String x:Key="L.Stage2.Title">ЭТАП 1 завершён</sys:String>
+    <sys:String x:Key="L.Stage2.Body">Установка Windows 10 завершена, состояние сохранено. Далее — ЭТАП 2: первая настройка (OOBE): «Подождите…», выбор региона и раскладки, создание учётной записи, экран «Привет» и «Мы готовим всё для вас».</sys:String>
+    <sys:String x:Key="L.Stage2.Key">Ключ продукта: {0}</sys:String>
+    <sys:String x:Key="L.Stage2.NoKey">Ключ продукта не указан (установка без активации)</sys:String>
+    <sys:String x:Key="L.Stage2.Edition">Редакция: {0}</sys:String>
+    <sys:String x:Key="L.Stage2.Disk">Раздел: {0}</sys:String>
+    <sys:String x:Key="L.Stage2.Restart">Установить Windows заново</sys:String>
+    <sys:String x:Key="L.Stage2.Exit">Выйти (Insert)</sys:String>
+
+</ResourceDictionary>

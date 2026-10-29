@@ -1,0 +1,17 @@
+<Application x:Class="Win10Sim.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             ShutdownMode="OnExplicitShutdown">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Токены: цвета, шрифты. Меняются только здесь. -->
+                <ResourceDictionary Source="Themes/Tokens.xaml" />
+                <!-- Стили контролов Win10 Setup. -->
+                <ResourceDictionary Source="Themes/Styles.xaml" />
+                <!-- Строки интерфейса. Источник по умолчанию — ru, подменяется LocalizationService. -->
+                <ResourceDictionary Source="Themes/Lang.ru.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,114 @@
+name: Build
+
+# Сборка Windows-исполняемого файла. Запускается на каждый push и вручную
+# (Actions → Build → Run workflow), поэтому .exe можно получить, не имея
+# на руках ни Windows, ни Visual Studio.
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+env:
+  DOTNET_NOLOGO: 'true'
+  DOTNET_CLI_TELEMETRY_OPTOUT: 'true'
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 'true'
+  CONFIGURATION: Release
+  APP_PROJECT: src/Win10Sim.App/Win10Sim.App.csproj
+  TEST_PROJECT: tests/Win10Sim.Core.Tests/Win10Sim.Core.Tests.csproj
+
+jobs:
+  build:
+    name: Build and test
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Info
+        run: dotnet --info
+
+      - name: Restore
+        run: dotnet restore Win10Sim.sln
+
+      - name: Build
+        run: dotnet build Win10Sim.sln -c $env:CONFIGURATION --no-restore -warnaserror
+
+      - name: Test
+        run: dotnet test $env:TEST_PROJECT -c $env:CONFIGURATION --no-build --logger "console;verbosity=normal"
+
+      # --- Вариант 1: автономный single-file exe (~150 МБ). Запускается на любой
+      #     Windows 10/11 без установленного .NET Runtime — это то, что нужно
+      #     пользователю, который просто хочет запустить симулятор.
+      - name: Publish self-contained single-file exe
+        run: >
+          dotnet publish $env:APP_PROJECT
+          -c $env:CONFIGURATION
+          -r win-x64
+          --self-contained true
+          -p:PublishSingleFile=true
+          -p:IncludeNativeLibrariesForSelfExtract=true
+          -p:EnableCompressionInSingleFile=true
+          -p:DebugType=None
+          -p:DebugSymbols=false
+          -o publish/standalone
+
+      # --- Вариант 2: компактный framework-dependent exe (~1 МБ + ресурсы).
+      #     Требует .NET 8 Desktop Runtime, зато собирается за секунды и удобен
+      #     для отладки.
+      - name: Publish framework-dependent exe
+        run: >
+          dotnet publish $env:APP_PROJECT
+          -c $env:CONFIGURATION
+          -r win-x64
+          --self-contained false
+          -p:PublishSingleFile=true
+          -p:DebugType=None
+          -p:DebugSymbols=false
+          -o publish/framework-dependent
+
+      - name: Collect artifacts info
+        shell: pwsh
+        run: |
+          Get-ChildItem publish -Recurse -File |
+            Select-Object FullName, @{ n = 'MB'; e = { [math]::Round($_.Length / 1MB, 2) } } |
+            Format-Table -AutoSize
+
+      - name: Upload standalone exe
+        uses: actions/upload-artifact@v4
+        with:
+          name: Win10Sim-standalone-win-x64
+          path: publish/standalone/Win10Sim.App.exe
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Upload framework-dependent build
+        uses: actions/upload-artifact@v4
+        with:
+          name: Win10Sim-framework-dependent-win-x64
+          path: publish/framework-dependent/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Summary
+        shell: pwsh
+        run: |
+          $exe = Get-Item publish/standalone/Win10Sim.App.exe
+          @"
+          ### Windows 10 Simulator
+
+          | Файл | Размер |
+          |---|---|
+          | ``Win10Sim.App.exe`` (автономный, single-file) | $([math]::Round($exe.Length / 1MB, 1)) МБ |
+          | ``Win10Sim.App.exe`` (framework-dependent) | $([math]::Round((Get-Item publish/framework-dependent/Win10Sim.App.exe).Length / 1MB, 1)) МБ |
+
+          Автономная сборка не требует установленного .NET: скачайте артефакт
+          ``Win10Sim-standalone-win-x64`` и запустите exe.
+          Выход из симулятора — клавиша ``Insert``.
+          "@ >> $env:GITHUB_STEP_SUMMARY

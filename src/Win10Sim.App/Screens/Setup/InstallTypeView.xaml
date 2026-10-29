@@ -1,0 +1,68 @@
+<UserControl x:Class="Win10Sim.App.Screens.Setup.InstallTypeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:Win10Sim.App.Controls"
+             FontFamily="{StaticResource Font.Ui}">
+
+    <Grid Background="{StaticResource Brush.SetupBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <controls:WindowsLogo Grid.Row="0"
+                              Width="26" Height="26"
+                              Margin="88,52,0,0"
+                              HorizontalAlignment="Left" />
+
+        <StackPanel Grid.Row="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Margin="88,0,88,0"
+                    MaxWidth="580">
+
+            <TextBlock Text="{DynamicResource L.InstallType.Title}" Style="{StaticResource Text.PageTitle}" />
+            <TextBlock Text="{DynamicResource L.InstallType.Subtitle}" Style="{StaticResource Text.Subtitle}" />
+
+            <RadioButton x:Name="UpgradeOption"
+                         GroupName="InstallType"
+                         Style="{StaticResource RadioButton.Card}"
+                         IsEnabled="False"
+                         Tag="Upgrade"
+                         Checked="OnTypeChecked">
+                <StackPanel>
+                    <TextBlock Text="{DynamicResource L.InstallType.Upgrade}" TextWrapping="Wrap" FontSize="15" />
+                    <TextBlock Text="{DynamicResource L.InstallType.Upgrade.Disabled}"
+                               Style="{StaticResource Text.Caption}"
+                               Margin="0,4,0,0" />
+                </StackPanel>
+            </RadioButton>
+
+            <RadioButton x:Name="CustomOption"
+                         GroupName="InstallType"
+                         Style="{StaticResource RadioButton.Card}"
+                         Tag="Custom"
+                         Checked="OnTypeChecked">
+                <StackPanel>
+                    <TextBlock Text="{DynamicResource L.InstallType.Custom}" TextWrapping="Wrap" FontSize="15" />
+                    <TextBlock Text="{DynamicResource L.InstallType.Custom.Description}"
+                               Style="{StaticResource Text.Caption}"
+                               Margin="0,4,0,0" />
+                </StackPanel>
+            </RadioButton>
+        </StackPanel>
+
+        <Grid Grid.Row="2" Margin="88,0,88,64">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Style="{StaticResource Button.Secondary}"
+                        Content="{DynamicResource L.Back}"
+                        Margin="0,0,12,0"
+                        Click="OnBackClick" />
+                <Button Style="{StaticResource Button.Primary}"
+                        Content="{DynamicResource L.Next}"
+                        Click="OnNextClick" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

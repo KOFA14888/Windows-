@@ -1,0 +1,39 @@
+<UserControl x:Class="Win10Sim.App.Screens.Boot.BootLogoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:Win10Sim.App.Controls"
+             Background="#000000">
+
+    <!--
+        Экран загрузки: чёрный фон, логотип Windows, вращающиеся точки.
+        Никакого текста — так же, как в настоящем загрузчике Win10.
+        Единственное отличие симулятора — подсказка про Insert в углу.
+    -->
+    <Grid Background="#000000">
+        <StackPanel VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Opacity="0">
+            <StackPanel.Triggers>
+                <EventTrigger RoutedEvent="StackPanel.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                             From="0" To="1" Duration="0:0:0.7" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </StackPanel.Triggers>
+
+            <controls:WindowsLogo Width="120" Height="120" />
+            <controls:BootSpinner Width="42" Height="42" Margin="0,34,0,0" />
+        </StackPanel>
+
+        <TextBlock Text="{DynamicResource L.Hint.Insert}"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom"
+                   Margin="0,0,28,22"
+                   FontFamily="{StaticResource Font.Ui}"
+                   FontSize="12"
+                   Foreground="#4A4A4A" />
+    </Grid>
+</UserControl>

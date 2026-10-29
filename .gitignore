@@ -1,0 +1,18 @@
+# .NET build artifacts
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+
+# Test results
+TestResults/
+*.trx
+coverage*.xml
+
+# Runtime data of the simulator (should never be committed)
+*.corrupted

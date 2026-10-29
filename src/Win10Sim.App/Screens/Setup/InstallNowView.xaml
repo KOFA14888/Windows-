@@ -1,0 +1,57 @@
+<UserControl x:Class="Win10Sim.App.Screens.Setup.InstallNowView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:Win10Sim.App.Controls"
+             FontFamily="{StaticResource Font.Ui}">
+
+    <Grid Background="{StaticResource Brush.SetupBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <controls:WindowsLogo Grid.Row="0"
+                              Width="26" Height="26"
+                              Margin="88,52,0,0"
+                              HorizontalAlignment="Left" />
+
+        <StackPanel Grid.Row="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Margin="88,0,88,0"
+                    MaxWidth="560">
+
+            <TextBlock Text="{DynamicResource L.InstallNow.Title}"
+                       Style="{StaticResource Text.PageTitle}"
+                       FontSize="42"
+                       Margin="0,0,0,12" />
+
+            <TextBlock Text="{DynamicResource L.InstallNow.Subtitle}"
+                       Style="{StaticResource Text.Subtitle}"
+                       Margin="0,0,0,38" />
+
+            <Button Style="{StaticResource Button.Primary}"
+                    Content="{DynamicResource L.InstallNow.Button}"
+                    Height="40"
+                    MinWidth="196"
+                    HorizontalAlignment="Left"
+                    Click="OnInstallNowClick" />
+        </StackPanel>
+
+        <Grid Grid.Row="2" Margin="88,0,88,52">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                <Button Style="{StaticResource Button.Link}"
+                        Content="{DynamicResource L.InstallNow.Troubleshoot}"
+                        IsEnabled="False"
+                        ToolTip="{DynamicResource L.InstallNow.TroubleshootHint}" />
+            </StackPanel>
+
+            <TextBlock Text="{DynamicResource L.InstallNow.Legal}"
+                       Style="{StaticResource Text.Caption}"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Bottom"
+                       FontSize="11" />
+        </Grid>
+    </Grid>
+</UserControl>

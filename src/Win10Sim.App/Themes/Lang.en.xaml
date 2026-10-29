@@ -1,0 +1,114 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+    <!--
+        UI strings (English). Keys MUST match Lang.ru.xaml exactly — this is
+        checked by Win10Sim.Core.Tests (LocalizationTests).
+    -->
+
+    <!-- Common -->
+    <sys:String x:Key="L.Next">Next</sys:String>
+    <sys:String x:Key="L.Back">Back</sys:String>
+    <sys:String x:Key="L.Cancel">Cancel</sys:String>
+    <sys:String x:Key="L.Install">Install</sys:String>
+    <sys:String x:Key="L.Hint.Insert">Insert — exit to the desktop</sys:String>
+    <sys:String x:Key="L.Hint.Esc">Esc — back</sys:String>
+
+    <!-- Language -->
+    <sys:String x:Key="L.Language.Title">Windows 10</sys:String>
+    <sys:String x:Key="L.Language.InstallLanguage">Language to install</sys:String>
+    <sys:String x:Key="L.Language.TimeFormat">Time and currency format</sys:String>
+    <sys:String x:Key="L.Language.Keyboard">Keyboard or input method</sys:String>
+
+    <!-- Install Now -->
+    <sys:String x:Key="L.InstallNow.Title">Windows 10</sys:String>
+    <sys:String x:Key="L.InstallNow.Subtitle">Install Windows 10 on this computer.</sys:String>
+    <sys:String x:Key="L.InstallNow.Button">Install now</sys:String>
+    <sys:String x:Key="L.InstallNow.Troubleshoot">Repair your computer</sys:String>
+    <sys:String x:Key="L.InstallNow.TroubleshootHint">Skip setup and open recovery tools (not available in the simulator)</sys:String>
+    <sys:String x:Key="L.InstallNow.Legal">© Microsoft Corporation. All rights reserved. Demonstration simulator.</sys:String>
+
+    <!-- Product key -->
+    <sys:String x:Key="L.Key.Title">Activate Windows</sys:String>
+    <sys:String x:Key="L.Key.Subtitle">Enter the product key to activate Windows.</sys:String>
+    <sys:String x:Key="L.Key.Label">Product key</sys:String>
+    <sys:String x:Key="L.Key.NoKey">I don't have a product key</sys:String>
+    <sys:String x:Key="L.Key.Hint">The product key is on the sticker on your computer or in the purchase confirmation email.</sys:String>
+    <sys:String x:Key="L.Key.NoKeyHint">Without a key Windows will be installed without activation. You can pick the edition manually.</sys:String>
+    <sys:String x:Key="L.Key.Error.Empty">Enter a product key.</sys:String>
+    <sys:String x:Key="L.Key.Error.WrongLength">A product key must have 25 characters.</sys:String>
+    <sys:String x:Key="L.Key.Error.InvalidCharacters">The key contains invalid characters. Use digits 2–9 and letters except I, O, S, B, L.</sys:String>
+    <sys:String x:Key="L.Key.Error.InvalidKey">The product key you entered is not valid.</sys:String>
+
+    <!-- Edition -->
+    <sys:String x:Key="L.Edition.Title">Select the edition</sys:String>
+    <sys:String x:Key="L.Edition.Subtitle">Select the edition of Windows 10 you want to install.</sys:String>
+    <sys:String x:Key="L.Edition.Home.Description">Base edition for home use.</sys:String>
+    <sys:String x:Key="L.Edition.Pro.Description">BitLocker, Hyper-V, Remote Desktop, domain join.</sys:String>
+    <sys:String x:Key="L.Edition.Enterprise.Description">Advanced management and security features for organizations.</sys:String>
+    <sys:String x:Key="L.Edition.FromKey">The edition was determined by the product key.</sys:String>
+
+    <!-- EULA -->
+    <sys:String x:Key="L.Eula.Title">License terms</sys:String>
+    <sys:String x:Key="L.Eula.Subtitle">Applicable notices and license terms.</sys:String>
+    <sys:String x:Key="L.Eula.Accept">I accept the license terms</sys:String>
+    <sys:String x:Key="L.Eula.ScrollHint">Scroll to the end of the text to accept the terms.</sys:String>
+    <sys:String x:Key="L.Eula.Ready">You can accept the terms now.</sys:String>
+
+    <!-- Install type -->
+    <sys:String x:Key="L.InstallType.Title">Choose an installation type</sys:String>
+    <sys:String x:Key="L.InstallType.Subtitle">Select how you want to install Windows 10.</sys:String>
+    <sys:String x:Key="L.InstallType.Upgrade">Upgrade: install Windows and keep files, settings and programs</sys:String>
+    <sys:String x:Key="L.InstallType.Upgrade.Disabled">Not available when setup is started from installation media.</sys:String>
+    <sys:String x:Key="L.InstallType.Custom">Custom: install Windows only (advanced)</sys:String>
+    <sys:String x:Key="L.InstallType.Custom.Description">Files, settings and programs won't be kept. You can change disk partitions.</sys:String>
+
+    <!-- Disk -->
+    <sys:String x:Key="L.Disk.Title">Where do you want to install Windows?</sys:String>
+    <sys:String x:Key="L.Disk.Subtitle">Select the partition to install Windows on, or create a new one.</sys:String>
+    <sys:String x:Key="L.Disk.Drive">Drive {0}</sys:String>
+    <sys:String x:Key="L.Disk.Partition">Partition {0}</sys:String>
+    <sys:String x:Key="L.Disk.Unallocated">Unallocated space on drive {0}</sys:String>
+    <sys:String x:Key="L.Disk.Type.Primary">Primary</sys:String>
+    <sys:String x:Key="L.Disk.Type.Efi">System (EFI)</sys:String>
+    <sys:String x:Key="L.Disk.Type.Recovery">Recovery</sys:String>
+    <sys:String x:Key="L.Disk.Size">Total size: {0}</sys:String>
+    <sys:String x:Key="L.Disk.Free">Free space: {0}</sys:String>
+    <sys:String x:Key="L.Disk.Format">Format</sys:String>
+    <sys:String x:Key="L.Disk.Refresh">Refresh</sys:String>
+    <sys:String x:Key="L.Disk.Warning">Installing Windows on this partition will delete all files on it.</sys:String>
+    <sys:String x:Key="L.Unit.GB">GB</sys:String>
+    <sys:String x:Key="L.Unit.MB">MB</sys:String>
+    <sys:String x:Key="L.Disk.FormatTitle">Formatting the partition</sys:String>
+    <sys:String x:Key="L.Disk.FormatQuick">Quick format (NTFS)</sys:String>
+    <sys:String x:Key="L.Disk.FormatCreating">Creating the file system…</sys:String>
+    <sys:String x:Key="L.Disk.FormatDone">The partition has been formatted.</sys:String>
+    <sys:String x:Key="L.Disk.NoSelection">Select a partition from the list.</sys:String>
+    <sys:String x:Key="L.Disk.MustFormat">The partition must be formatted before installation.</sys:String>
+
+    <!-- Installation -->
+    <sys:String x:Key="L.Copy.Title">Installing Windows</sys:String>
+    <sys:String x:Key="L.Copy.Stage.CopyingFiles">Copying Windows files</sys:String>
+    <sys:String x:Key="L.Copy.Stage.InstallingComponents">Installing components</sys:String>
+    <sys:String x:Key="L.Copy.Stage.InstallingUpdates">Installing updates</sys:String>
+    <sys:String x:Key="L.Copy.Stage.Finishing">Finishing up</sys:String>
+    <sys:String x:Key="L.Copy.Percent">{0} %</sys:String>
+    <sys:String x:Key="L.Copy.Note">Your computer will restart several times. Keep it turned on.</sys:String>
+    <sys:String x:Key="L.Copy.RebootSoon">Your computer will restart in a few seconds.</sys:String>
+
+    <!-- Reboot -->
+    <sys:String x:Key="L.Reboot.Title">Restarting</sys:String>
+    <sys:String x:Key="L.Reboot.Subtitle">Setup is still running. Keep your computer turned on.</sys:String>
+
+    <!-- Stage 2 placeholder -->
+    <sys:String x:Key="L.Stage2.Title">Stage 1 complete</sys:String>
+    <sys:String x:Key="L.Stage2.Body">Windows 10 setup has finished and the state is saved. Next is stage 2 — the out-of-box experience: "Just a moment…", region and keyboard selection, account creation, "Hi" and "We're getting things ready".</sys:String>
+    <sys:String x:Key="L.Stage2.Key">Product key: {0}</sys:String>
+    <sys:String x:Key="L.Stage2.NoKey">No product key (installed without activation)</sys:String>
+    <sys:String x:Key="L.Stage2.Edition">Edition: {0}</sys:String>
+    <sys:String x:Key="L.Stage2.Disk">Partition: {0}</sys:String>
+    <sys:String x:Key="L.Stage2.Restart">Install Windows again</sys:String>
+    <sys:String x:Key="L.Stage2.Exit">Exit (Insert)</sys:String>
+
+</ResourceDictionary>

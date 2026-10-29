@@ -1,0 +1,18 @@
+<UserControl x:Class="Win10Sim.App.Controls.WindowsLogo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Foreground="White"
+             SnapsToDevicePixels="True">
+    <!--
+        Логотип Windows: четыре квадрата, разделённые крестом.
+        Размер задаётся снаружи через Width/Height (Viewbox масштабирует пропорционально).
+    -->
+    <Viewbox Stretch="Uniform">
+        <UniformGrid Columns="2" Rows="2" Width="48" Height="48">
+            <Rectangle Margin="2.5" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+            <Rectangle Margin="2.5" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+            <Rectangle Margin="2.5" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+            <Rectangle Margin="2.5" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+        </UniformGrid>
+    </Viewbox>
+</UserControl>

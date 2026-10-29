@@ -1,0 +1,26 @@
+<Window x:Class="Win10Sim.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Windows 10"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="Manual"
+        Background="#000000"
+        TextOptions.TextFormattingMode="Display"
+        TextOptions.TextRenderingMode="ClearType"
+        UseLayoutRounding="True"
+        SnapsToDevicePixels="True"
+        Cursor="Arrow">
+
+    <!--
+        Единственное окно симулятора. Всё остальное — содержимое этой ContentControl.
+        Никаких рамок, заголовков и системных кнопок: их снимает Platform/Fullscreen.cs
+        уже на уровне HWND (WS_CAPTION, WS_THICKFRAME, WS_SYSMENU, ...).
+    -->
+    <Grid>
+        <ContentControl x:Name="ScreenHost"
+                        Focusable="False"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch" />
+    </Grid>
+</Window>
