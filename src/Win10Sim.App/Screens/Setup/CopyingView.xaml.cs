@@ -27,7 +27,7 @@ public partial class CopyingView : SetupScreenBase
     {
         var progress = new Progress<InstallProgress>(OnProgress);
 
-        await Services.Installer.InstallAsync(Session, progress, cancellationToken).ConfigureAwait(true);
+        await SetupInstaller.InstallAsync(Session, progress, cancellationToken).ConfigureAwait(true);
 
         RebootHint.Visibility = System.Windows.Visibility.Visible;
         await Task.Delay(SetupTimings.Scale(RebootDelay), cancellationToken).ConfigureAwait(true);

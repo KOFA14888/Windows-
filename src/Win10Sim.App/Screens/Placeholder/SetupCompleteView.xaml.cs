@@ -5,12 +5,12 @@ using Win10Sim.Core.Setup;
 namespace Win10Sim.App.Screens.Placeholder;
 
 /// <summary>
-/// Конец ЭТАПА 1. Показывает итог установки и позволяет начать заново
-/// (полный цикл «перезагрузка → установка») или выйти по Insert.
+/// Конец ЭТАПА 1 (и запасной экран для фаз, которых ещё нет).
+/// Показывает итог установки и позволяет начать заново или выйти по Insert.
 /// </summary>
-public partial class StageCompleteView : SetupScreenBase
+public partial class SetupCompleteView : SetupScreenBase
 {
-    public StageCompleteView(AppServices services)
+    public SetupCompleteView(AppServices services)
         : base(services)
     {
         InitializeComponent();

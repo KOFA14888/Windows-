@@ -23,12 +23,11 @@ public class SetupInstallerTests : IDisposable
     [Fact]
     public async Task Install_ReportsMonotonicProgressAndFinishesAt100()
     {
-        var installer = new SetupInstaller();
         var session = new SetupSession();
         var reports = new List<InstallProgress>();
 
         var progress = new Progress<InstallProgress>(reports.Add);
-        await installer.InstallAsync(session, progress, CancellationToken.None);
+        await SetupInstaller.InstallAsync(session, progress, CancellationToken.None);
 
         // Progress<T> доставляет колбэки через контекст синхронизации; в тесте
         // без SynchronizationContext они идут в пул потоков — ждём фактического прихода.
@@ -43,11 +42,10 @@ public class SetupInstallerTests : IDisposable
     [Fact]
     public async Task Install_CancellationStopsTheProcess()
     {
-        var installer = new SetupInstaller();
         var session = new SetupSession();
         using var cts = new CancellationTokenSource();
 
-        Task installing = installer.InstallAsync(session, new Progress<InstallProgress>(_ => { }), cts.Token);
+        Task installing = SetupInstaller.InstallAsync(session, new Progress<InstallProgress>(_ => { }), cts.Token);
         cts.CancelAfter(TimeSpan.FromMilliseconds(150));
 
         await Assert.ThrowsAnyAsync<OperationCanceledException>(() => installing);
@@ -59,11 +57,10 @@ public class SetupInstallerTests : IDisposable
     [Fact]
     public async Task Format_GoesThroughAllStages()
     {
-        var installer = new SetupInstaller();
         PartitionInfo partition = DiskFactory.CreateDefault()[0].Partitions[2];
         var stages = new List<FormatStage>();
 
-        await installer.FormatAsync(partition, new Progress<FormatStage>(stages.Add), CancellationToken.None);
+        await SetupInstaller.FormatAsync(partition, new Progress<FormatStage>(stages.Add), CancellationToken.None);
         await WaitUntilAsync(() => stages.Count >= 3);
 
         Assert.Equal(
@@ -74,10 +71,8 @@ public class SetupInstallerTests : IDisposable
     [Fact]
     public async Task Format_RequiresPartition()
     {
-        var installer = new SetupInstaller();
-
         await Assert.ThrowsAsync<ArgumentNullException>(
-            () => installer.FormatAsync(null!, null, CancellationToken.None));
+            () => SetupInstaller.FormatAsync(null!, null, CancellationToken.None));
     }
 
     private static async Task WaitUntilAsync(Func<bool> condition, int timeoutMs = 5000)

@@ -1,6 +1,7 @@
-<UserControl x:Class="Win10Sim.App.Screens.Placeholder.StageCompleteView"
+<infra:SetupScreenBase x:Class="Win10Sim.App.Screens.Placeholder.SetupCompleteView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:infra="clr-namespace:Win10Sim.App.Infrastructure"
              xmlns:controls="clr-namespace:Win10Sim.App.Controls"
              FontFamily="{StaticResource Font.Ui}">
 
@@ -52,4 +53,4 @@
                     Click="OnRestartClick" />
         </Grid>
     </Grid>
-</UserControl>
+</infra:SetupScreenBase>

@@ -46,6 +46,15 @@
         </LinearGradientBrush.GradientStops>
     </LinearGradientBrush>
 
+    <!-- Фон OOBE: глубокий синий, как у экранов первой настройки Win10 -->
+    <LinearGradientBrush x:Key="Brush.OobeBackground" StartPoint="0.1,0" EndPoint="0.9,1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Color="#0B5DA8" Offset="0" />
+            <GradientStop Color="#0A4E8C" Offset="0.5" />
+            <GradientStop Color="#0A3E70" Offset="1" />
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
     <!-- Шрифты -->
     <FontFamily x:Key="Font.Ui">Segoe UI</FontFamily>
     <FontFamily x:Key="Font.Light">Segoe UI Light</FontFamily>

@@ -8,6 +8,10 @@ namespace Win10Sim.App.Infrastructure;
 /// Ручной DI-контейнер: сервисы создаются один раз на процесс и живут
 /// столько же, сколько приложение. Никаких статических синглтонов, кроме
 /// <c>Application.Current</c>, который нужен самому WPF.
+///
+/// Здесь только то, что имеет состояние. Имитация установки и подготовки
+/// системы (SetupInstaller, OobePreparer) состояния не имеет и вызывается
+/// статически — так её нельзя случайно «испортить» между экранами.
 /// </summary>
 public sealed class AppServices
 {
@@ -18,7 +22,6 @@ public sealed class AppServices
         Store = stateStore ?? new JsonStateStore();
         Session = Store.Load();
         Disks = DiskFactory.CreateDefault();
-        Installer = new SetupInstaller();
         Localization = new LocalizationService();
     }
 
@@ -31,8 +34,6 @@ public sealed class AppServices
 
     /// <summary>«Железо» — список дисков для экрана выбора раздела.</summary>
     public IReadOnlyList<DiskInfo> Disks { get; }
-
-    public SetupInstaller Installer { get; }
 
     public LocalizationService Localization { get; }
 

@@ -111,4 +111,64 @@
     <sys:String x:Key="L.Stage2.Restart">Install Windows again</sys:String>
     <sys:String x:Key="L.Stage2.Exit">Exit (Insert)</sys:String>
 
+
+    <!-- ===== Stage 2: OOBE ===== -->
+    <sys:String x:Key="L.Oobe.Wait">Just a moment…</sys:String>
+    <sys:String x:Key="L.Oobe.Accessibility">Accessibility</sys:String>
+    <sys:String x:Key="L.Oobe.AccessibilityHint">Not available in the simulator</sys:String>
+
+    <sys:String x:Key="L.Oobe.Region.Title">Is this the right region?</sys:String>
+    <sys:String x:Key="L.Oobe.Region.Detected">It looks like you are here: {0}</sys:String>
+    <sys:String x:Key="L.Oobe.Region.TimeZone">Time zone: {0}</sys:String>
+    <sys:String x:Key="L.Oobe.Region.Yes">Yes</sys:String>
+    <sys:String x:Key="L.Oobe.Region.No">No, pick another</sys:String>
+    <sys:String x:Key="L.Oobe.Region.List">Choose a region</sys:String>
+
+    <sys:String x:Key="L.Oobe.Keyboard.Title">Check your keyboard layout</sys:String>
+    <sys:String x:Key="L.Oobe.Keyboard.Subtitle">If this layout is wrong, pick another one. You can add a second layout now or later.</sys:String>
+    <sys:String x:Key="L.Oobe.Keyboard.Primary">Primary layout</sys:String>
+    <sys:String x:Key="L.Oobe.Keyboard.Secondary">Second layout</sys:String>
+    <sys:String x:Key="L.Oobe.Keyboard.None">Don't add</sys:String>
+
+    <sys:String x:Key="L.Oobe.Account.Title">Who's going to use this PC?</sys:String>
+    <sys:String x:Key="L.Oobe.Account.Subtitle">Enter an account name — it will be shown on the sign-in screen.</sys:String>
+    <sys:String x:Key="L.Oobe.Account.Label">User name</sys:String>
+    <sys:String x:Key="L.Oobe.Account.Error.Empty">Enter a user name.</sys:String>
+    <sys:String x:Key="L.Oobe.Account.Error.TooLong">The name must be 20 characters or shorter.</sys:String>
+    <sys:String x:Key="L.Oobe.Account.Error.InvalidCharacters">The name can't contain " / \ [ ] : ; | = , + * ? &lt; &gt; @</sys:String>
+    <sys:String x:Key="L.Oobe.Account.Error.EndsWithDotOrSpace">The name can't end with a dot or a space.</sys:String>
+    <sys:String x:Key="L.Oobe.Account.Error.ReservedName">This name is reserved by the system.</sys:String>
+    <sys:String x:Key="L.Oobe.Account.Error.AllDots">The name can't consist of dots only.</sys:String>
+
+    <sys:String x:Key="L.Oobe.Password.Title">Create a password</sys:String>
+    <sys:String x:Key="L.Oobe.Password.Subtitle">A password protects your account. You can skip it and sign in without one.</sys:String>
+    <sys:String x:Key="L.Oobe.Password.Label">Password</sys:String>
+    <sys:String x:Key="L.Oobe.Password.Confirm">Confirm password</sys:String>
+    <sys:String x:Key="L.Oobe.Password.Hint">Password hint</sys:String>
+    <sys:String x:Key="L.Oobe.Password.Error.Short">The password must be at least 4 characters.</sys:String>
+    <sys:String x:Key="L.Oobe.Password.Error.Mismatch">The passwords don't match.</sys:String>
+    <sys:String x:Key="L.Oobe.Password.Error.HintTooLong">The hint must be 60 characters or shorter.</sys:String>
+    <sys:String x:Key="L.Oobe.Password.Skip">Continue without a password</sys:String>
+
+    <sys:String x:Key="L.Oobe.Hello.Title">Hi</sys:String>
+
+    <sys:String x:Key="L.Oobe.Preparing.Title">We're getting things ready</sys:String>
+    <sys:String x:Key="L.Oobe.Preparing.Subtitle">This might take a few minutes. Don't turn off your PC.</sys:String>
+    <sys:String x:Key="L.Oobe.Preparing.Step.ApplyingSettings">Applying settings</sys:String>
+    <sys:String x:Key="L.Oobe.Preparing.Step.ConfiguringDisplay">Setting up display and sound</sys:String>
+    <sys:String x:Key="L.Oobe.Preparing.Step.InstallingApps">Installing apps</sys:String>
+    <sys:String x:Key="L.Oobe.Preparing.Step.ConnectingAccount">Connecting your account</sys:String>
+    <sys:String x:Key="L.Oobe.Preparing.Step.CreatingProfile">Creating your profile</sys:String>
+    <sys:String x:Key="L.Oobe.Preparing.Step.SettingUpCortana">Setting up search and notifications</sys:String>
+
+    <sys:String x:Key="L.Oobe.Done.Title">Stage 2 complete</sys:String>
+    <sys:String x:Key="L.Oobe.Done.Body">The out-of-box experience is finished and the account is saved. Next is stage 3: the lock screen with a clock and password entry, the desktop, the taskbar and the Start menu.</sys:String>
+    <sys:String x:Key="L.Oobe.Done.Account">Account: {0}  ·  {1}</sys:String>
+    <sys:String x:Key="L.Oobe.Done.PasswordSet">password set (PBKDF2-SHA256, {0:N0} iterations)</sys:String>
+    <sys:String x:Key="L.Oobe.Done.NoPassword">sign in without a password</sys:String>
+    <sys:String x:Key="L.Oobe.Done.Region">Region: {0}  ·  {1}</sys:String>
+    <sys:String x:Key="L.Oobe.Done.Keyboard">Layouts: {0}</sys:String>
+    <sys:String x:Key="L.Oobe.Done.Secure">The password is never stored in state.json: only the salt and hash.</sys:String>
+    <sys:String x:Key="L.Oobe.Done.Restart">Run setup again</sys:String>
+
 </ResourceDictionary>

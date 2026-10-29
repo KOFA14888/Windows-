@@ -82,6 +82,18 @@ for path in xaml_files:
             if f"namespace {namespace}" not in cs:
                 fail(f"{code_behind.name}: namespace не совпадает с x:Class ({namespace})")
 
+            # Базовый класс в code-behind обязан совпадать с корневым элементом XAML:
+            # иначе компилятор ругается "Partial declarations must not specify different
+            # base classes" — ошибка, которую легко не заметить при чтении диффа.
+            root_local = root.tag.split("}")[-1]
+            if root_local not in ("UserControl", "Window", "Application", "Page", "ResourceDictionary"):
+                declared = re.search(
+                    rf"partial class {expected}\s*:\s*([A-Za-z0-9_.]+)", cs)
+                base_name = declared.group(1).split(".")[-1] if declared else None
+                if base_name != root_local:
+                    fail(f"{path.relative_to(ROOT)}: корень <{root_local}>, "
+                         f"а code-behind наследует {base_name or 'UserControl'}")
+
 # ---------- 2. Ссылки на ресурсы ----------
 # Неявные стили по TargetType и системные ключи WPF считаем валидными.
 BUILTIN_PREFIXES = ("{x:", "SystemColors.", "SystemFonts.")

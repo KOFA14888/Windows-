@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Win10Sim.Core.Accounts;
 
 namespace Win10Sim.Core.Setup;
 
@@ -41,10 +42,18 @@ public sealed class SetupSession
     public DateTime? InstallStartedUtc { get; set; }
     public DateTime? InstallCompletedUtc { get; set; }
 
-    // ---------- Аватары будущих этапов (ЭТАП 2+) ----------
+    // ---------- OOBE (ЭТАП 2) ----------
+    public string? RegionCode { get; set; }
+    public string? RegionName { get; set; }
+    public string? PrimaryKeyboard { get; set; }
+    public string? SecondaryKeyboard { get; set; }
     public string? UserName { get; set; }
     public string? UserDisplayName { get; set; }
-    public string? Region { get; set; }
+
+    /// <summary>Учётная запись, созданная в OOBE. Пароль хранится только как PBKDF2-хэш.</summary>
+    public UserAccount? Account { get; set; }
+
+    public DateTime? OobeCompletedUtc { get; set; }
     public DateTime CreatedUtc { get; set; } = DateTime.UtcNow;
 
     /// <summary>Язык интерфейса: "ru" или "en" (по коду InstallLanguage).</summary>
@@ -70,7 +79,12 @@ public sealed class SetupSession
         InstallCompletedUtc = null;
         UserName = null;
         UserDisplayName = null;
-        Region = null;
+        RegionCode = null;
+        RegionName = null;
+        PrimaryKeyboard = null;
+        SecondaryKeyboard = null;
+        Account = null;
+        OobeCompletedUtc = null;
         CreatedUtc = DateTime.UtcNow;
     }
 }

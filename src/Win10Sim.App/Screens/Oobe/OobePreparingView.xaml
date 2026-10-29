@@ -1,0 +1,35 @@
+<oobe:OobeScreenBase x:Class="Win10Sim.App.Screens.Oobe.OobePreparingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:oobe="clr-namespace:Win10Sim.App.Screens.Oobe"
+             xmlns:controls="clr-namespace:Win10Sim.App.Controls"
+             FontFamily="{StaticResource Font.Ui}">
+
+    <Grid Background="{StaticResource Brush.OobeBackground}">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="140,0,140,0" MaxWidth="720">
+            <TextBlock Text="{DynamicResource L.Oobe.Preparing.Title}" Style="{StaticResource Text.OobeTitle}" />
+            <TextBlock Text="{DynamicResource L.Oobe.Preparing.Subtitle}" Style="{StaticResource Text.OobeSubtitle}" />
+
+            <controls:BootSpinner Width="34" Height="34" HorizontalAlignment="Left" Margin="4,6,0,26" />
+
+            <ProgressBar x:Name="Progress"
+                         Style="{StaticResource ProgressBar.Setup}"
+                         Minimum="0" Maximum="100"
+                         Width="520"
+                         HorizontalAlignment="Left" />
+
+            <TextBlock x:Name="StepText"
+                       FontSize="15"
+                       Foreground="#D6E4F0"
+                       Margin="0,14,0,0" />
+        </StackPanel>
+
+        <Button Style="{StaticResource Button.OobeLink}"
+                Content="{DynamicResource L.Oobe.Accessibility}"
+                IsEnabled="False"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Margin="60,0,0,44"
+                ToolTip="{DynamicResource L.Oobe.AccessibilityHint}" />
+    </Grid>
+</oobe:OobeScreenBase>

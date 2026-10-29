@@ -1,0 +1,61 @@
+<oobe:OobeScreenBase x:Class="Win10Sim.App.Screens.Oobe.OobeRegionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:oobe="clr-namespace:Win10Sim.App.Screens.Oobe"
+             xmlns:controls="clr-namespace:Win10Sim.App.Controls"
+             FontFamily="{StaticResource Font.Ui}">
+
+    <Grid Background="{StaticResource Brush.OobeBackground}">
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Left" Margin="140,0,140,0" MaxWidth="620">
+            <StackPanel>
+                <TextBlock Text="{DynamicResource L.Oobe.Region.Title}" Style="{StaticResource Text.OobeTitle}" />
+
+                <!-- Вариант 1: регион определён автоматически (как в настоящей OOBE) -->
+                <StackPanel x:Name="DetectedPanel">
+                    <TextBlock x:Name="DetectedText" Style="{StaticResource Text.OobeSubtitle}" />
+                    <TextBlock x:Name="TimeZoneText"
+                               FontSize="14"
+                               Foreground="#B8CFE3"
+                               Margin="0,-12,0,26" />
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button Style="{StaticResource Button.Oobe}"
+                                Content="{DynamicResource L.Oobe.Region.Yes}"
+                                IsDefault="True"
+                                Click="OnYesClick" />
+                        <Button Style="{StaticResource Button.OobeLink}"
+                                Content="{DynamicResource L.Oobe.Region.No}"
+                                Margin="24,0,0,0"
+                                VerticalAlignment="Center"
+                                Click="OnNoClick" />
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Вариант 2: пользователь отказался — выбор из списка -->
+                <StackPanel x:Name="ListPanel" Visibility="Collapsed">
+                    <TextBlock Text="{DynamicResource L.Oobe.Region.List}" Style="{StaticResource Text.OobeSubtitle}" />
+                    <ComboBox x:Name="RegionCombo"
+                              Style="{StaticResource ComboBox.Oobe}"
+                              Width="420"
+                              HorizontalAlignment="Left"
+                              MaxDropDownHeight="320"
+                              SelectionChanged="OnRegionChanged" />
+
+                    <Button Style="{StaticResource Button.Oobe}"
+                            Content="{DynamicResource L.Next}"
+                            Margin="0,28,0,0"
+                            HorizontalAlignment="Left"
+                            Click="OnNextClick" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Button Style="{StaticResource Button.OobeLink}"
+                Content="{DynamicResource L.Oobe.Accessibility}"
+                IsEnabled="False"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Margin="60,0,0,44"
+                ToolTip="{DynamicResource L.Oobe.AccessibilityHint}" />
+    </Grid>
+</oobe:OobeScreenBase>

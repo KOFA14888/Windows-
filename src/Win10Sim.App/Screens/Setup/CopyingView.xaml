@@ -1,6 +1,7 @@
-<UserControl x:Class="Win10Sim.App.Screens.Setup.CopyingView"
+<infra:SetupScreenBase x:Class="Win10Sim.App.Screens.Setup.CopyingView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:infra="clr-namespace:Win10Sim.App.Infrastructure"
              FontFamily="{StaticResource Font.Ui}">
 
     <Grid Background="{StaticResource Brush.SetupBackground}">
@@ -54,4 +55,4 @@
                    FontSize="12"
                    Foreground="#4A4A4A" />
     </Grid>
-</UserControl>
+</infra:SetupScreenBase>

@@ -28,12 +28,13 @@ public enum OsPhase
     OobeRegion = 12,
     OobeKeyboard = 13,
     OobeAccount = 14,
-    OobeHello = 15,
-    OobePreparing = 16,
+    OobePassword = 15,
+    OobeHello = 16,
+    OobePreparing = 17,
 
     // ---------- ЭТАП 3: оболочка ----------
-    LockScreen = 17,
-    Desktop = 18
+    LockScreen = 18,
+    Desktop = 19
 }
 
 public static class OsPhaseExtensions

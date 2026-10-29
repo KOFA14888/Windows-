@@ -110,7 +110,7 @@ public partial class DiskView : SetupScreenBase
                 _ => UiStrings.Get("L.Disk.FormatDone")
             });
 
-            await Services.Installer.FormatAsync(partition, progress, CancellationToken.None);
+            await SetupInstaller.FormatAsync(partition, progress, CancellationToken.None);
 
             Session.DiskFormatted = true;
             Session.FormattedPartition = partition.Id;

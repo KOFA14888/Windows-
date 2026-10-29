@@ -1,0 +1,48 @@
+<oobe:OobeScreenBase x:Class="Win10Sim.App.Screens.Oobe.OobeAccountView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:oobe="clr-namespace:Win10Sim.App.Screens.Oobe"
+             FontFamily="{StaticResource Font.Ui}">
+
+    <Grid Background="{StaticResource Brush.OobeBackground}">
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Left" Margin="140,0,140,0" MaxWidth="620">
+            <StackPanel>
+                <TextBlock Text="{DynamicResource L.Oobe.Account.Title}" Style="{StaticResource Text.OobeTitle}" />
+                <TextBlock Text="{DynamicResource L.Oobe.Account.Subtitle}" Style="{StaticResource Text.OobeSubtitle}" />
+
+                <TextBlock Text="{DynamicResource L.Oobe.Account.Label}"
+                           FontSize="14"
+                           Foreground="#B8CFE3"
+                           Margin="0,0,0,4" />
+                <TextBox x:Name="NameBox"
+                         Style="{StaticResource TextBox.Oobe}"
+                         Width="360"
+                         HorizontalAlignment="Left"
+                         MaxLength="20"
+                         TextChanged="OnNameChanged" />
+
+                <TextBlock x:Name="ErrorText"
+                           FontSize="13"
+                           Foreground="#FFC9C9"
+                           Margin="0,8,0,0"
+                           TextWrapping="Wrap"
+                           Visibility="Collapsed" />
+
+                <Button Style="{StaticResource Button.Oobe}"
+                        Content="{DynamicResource L.Next}"
+                        Margin="0,26,0,0"
+                        HorizontalAlignment="Left"
+                        IsDefault="True"
+                        Click="OnNextClick" />
+            </StackPanel>
+        </Grid>
+
+        <Button Style="{StaticResource Button.OobeLink}"
+                Content="{DynamicResource L.Oobe.Accessibility}"
+                IsEnabled="False"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Margin="60,0,0,44"
+                ToolTip="{DynamicResource L.Oobe.AccessibilityHint}" />
+    </Grid>
+</oobe:OobeScreenBase>

@@ -1,0 +1,42 @@
+<oobe:OobeScreenBase x:Class="Win10Sim.App.Screens.Oobe.OobeCompleteView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:oobe="clr-namespace:Win10Sim.App.Screens.Oobe"
+             FontFamily="{StaticResource Font.Ui}">
+
+    <!--
+        Итог ЭТАПА 2. Экран занимает фазу LockScreen до тех пор, пока ЭТАП 3
+        не подменит его настоящим экраном блокировки с часами и вводом пароля.
+    -->
+    <Grid Background="{StaticResource Brush.OobeBackground}">
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Left" Margin="140,0,140,0" MaxWidth="760">
+            <StackPanel>
+                <TextBlock Text="{DynamicResource L.Oobe.Done.Title}" Style="{StaticResource Text.OobeTitle}" />
+                <TextBlock Text="{DynamicResource L.Oobe.Done.Body}" Style="{StaticResource Text.OobeSubtitle}" />
+
+                <Border Background="#1FFFFFFF" BorderBrush="#4DFFFFFF" BorderThickness="1" Padding="20,16">
+                    <StackPanel>
+                        <TextBlock x:Name="AccountText" FontSize="15" Foreground="#FFFFFF" Margin="0,0,0,8" />
+                        <TextBlock x:Name="RegionText" FontSize="15" Foreground="#FFFFFF" Margin="0,0,0,8" />
+                        <TextBlock x:Name="KeyboardText" FontSize="15" Foreground="#FFFFFF" Margin="0,0,0,8" />
+                        <TextBlock Text="{DynamicResource L.Oobe.Done.Secure}"
+                                   FontSize="12"
+                                   Foreground="#B8CFE3" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Grid>
+
+        <Grid VerticalAlignment="Bottom" Margin="140,0,140,56">
+            <Button Style="{StaticResource Button.OobeLink}"
+                    Content="{DynamicResource L.Hint.Insert}"
+                    HorizontalAlignment="Left"
+                    Click="OnExitClick" />
+
+            <Button Style="{StaticResource Button.Oobe}"
+                    Content="{DynamicResource L.Oobe.Done.Restart}"
+                    HorizontalAlignment="Right"
+                    Click="OnRestartClick" />
+        </Grid>
+    </Grid>
+</oobe:OobeScreenBase>

@@ -1,6 +1,7 @@
 using System.Windows;
 using Win10Sim.App.Infrastructure;
 using Win10Sim.App.Screens.Boot;
+using Win10Sim.App.Screens.Oobe;
 using Win10Sim.App.Screens.Placeholder;
 using Win10Sim.App.Screens.Setup;
 using Win10Sim.Core.Setup;
@@ -74,14 +75,23 @@ public sealed class BootFlow
         OsPhase.Reboot =>
             new BootLogoView(_services, OsPhase.OobeWait, SetupTimings.RebootLogo),
 
-        // ---------- ЭТАП 2 ещё не реализован ----------
-        OsPhase.OobeWait or OsPhase.OobeRegion or OsPhase.OobeKeyboard or
-        OsPhase.OobeAccount or OsPhase.OobeHello or OsPhase.OobePreparing =>
-            new StageCompleteView(_services),
+        // ---------- ЭТАП 2: первая настройка (OOBE) ----------
+        OsPhase.OobeWait => new OobeWaitView(_services),
+        OsPhase.OobeRegion => new OobeRegionView(_services),
+        OsPhase.OobeKeyboard => new OobeKeyboardView(_services),
+        OsPhase.OobeAccount => new OobeAccountView(_services),
+        OsPhase.OobePassword => new OobePasswordView(_services),
+        OsPhase.OobeHello => new OobeHelloView(_services),
+        OsPhase.OobePreparing => new OobePreparingView(_services),
 
-        // Фазы ЭТАПОВ 3–4 ещё не реализованы: лучше показать итог установки,
-        // чем оставить пользователя в пустом чёрном полноэкранном окне.
-        _ => new StageCompleteView(_services)
+        // ---------- ЭТАП 3 ещё не реализован ----------
+        // LockScreen/Desktop обслуживает экран-итог OOBE, пока ЭТАП 3 не добавит
+        // настоящий экран блокировки и рабочий стол.
+        OsPhase.LockScreen or OsPhase.Desktop => new OobeCompleteView(_services),
+
+        // Неизвестная фаза (например, из более новой версии state.json):
+        // лучше показать итог установки, чем пустое чёрное окно без выхода.
+        _ => new SetupCompleteView(_services)
     };
 
     private async Task<OsPhase> ShowScreenAsync(FrameworkElement view, CancellationToken cancellationToken)

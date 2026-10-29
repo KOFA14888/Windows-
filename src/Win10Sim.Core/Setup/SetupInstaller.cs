@@ -29,7 +29,7 @@ public readonly record struct InstallProgress(
 /// Все длительные операции принимают CancellationToken: выход по Insert
 /// должен прерывать установку мгновенно, а не через 20 секунд.
 /// </summary>
-public sealed class SetupInstaller
+public static class SetupInstaller
 {
     private readonly record struct StagePlan(InstallStage Stage, int From, int To, double Seconds);
 
@@ -66,7 +66,7 @@ public sealed class SetupInstaller
     };
 
     /// <summary>Быстрое форматирование выбранного раздела перед копированием файлов.</summary>
-    public async Task FormatAsync(
+    public static async Task FormatAsync(
         PartitionInfo partition,
         IProgress<FormatStage>? progress,
         CancellationToken cancellationToken)
@@ -85,7 +85,7 @@ public sealed class SetupInstaller
     }
 
     /// <summary>Полный цикл «Копирование файлов → Завершение».</summary>
-    public async Task InstallAsync(
+    public static async Task InstallAsync(
         SetupSession session,
         IProgress<InstallProgress> progress,
         CancellationToken cancellationToken)
