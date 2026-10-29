@@ -54,11 +54,19 @@ jobs:
           $log | Out-File -FilePath test-output.txt -Encoding utf8
 
           if ($LASTEXITCODE -ne 0) {
+            # GitHub показывает не больше 10 аннотаций на шаг, поэтому берём
+            # только строки с падениями (регистрозависимо: «Passed ...SpecificError»
+            # не должно попадать в фильтр).
             $relevant = $log -split "`r?`n" | Where-Object {
-              $_ -match '\[FAIL\]|Failed |Assert\.|Error Message|Expected:|Actual:|Stack Trace|error'
-            } | Select-Object -First 40
+              $_ -cmatch '\[FAIL\]|^\s*Failed [!:]|Assert\.|Error Message|Expected:|Actual:'
+            } | Select-Object -First 9
+
+            $summary = ($log -split "`r?`n" | Where-Object { $_ -cmatch '^(Failed|Passed|Skipped)!' } | Select-Object -Last 1)
+            Write-Host "::error::$([string]::IsNullOrWhiteSpace($summary) ? 'dotnet test завершился с ошибкой' : $summary.Trim())"
+
             foreach ($line in $relevant) {
-              Write-Host "::error::$(($line -replace '%', '%25' -replace '\r', '').Trim())"
+              $clean = ($line -replace '%', '%25' -replace '\r', '').Trim()
+              if ($clean.Length -gt 0) { Write-Host "::error::$clean" }
             }
             exit 1
           }
