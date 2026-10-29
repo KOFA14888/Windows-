@@ -38,7 +38,7 @@
     <sys:String x:Key="L.Key.NoKeyHint">Without a key Windows will be installed without activation. You can pick the edition manually.</sys:String>
     <sys:String x:Key="L.Key.Error.Empty">Enter a product key.</sys:String>
     <sys:String x:Key="L.Key.Error.WrongLength">A product key must have 25 characters.</sys:String>
-    <sys:String x:Key="L.Key.Error.InvalidCharacters">The key contains invalid characters. Use digits 2–9 and letters except I, O, S, B, L.</sys:String>
+    <sys:String x:Key="L.Key.Error.InvalidCharacters">The key contains invalid characters. Digits 2, 3, 4, 6, 7, 8, 9 and Latin letters other than A, E, I, L, O, S, U, Z are allowed.</sys:String>
     <sys:String x:Key="L.Key.Error.InvalidKey">The product key you entered is not valid.</sys:String>
 
     <!-- Edition -->

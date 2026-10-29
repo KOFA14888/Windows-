@@ -38,7 +38,7 @@
     <sys:String x:Key="L.Key.NoKeyHint">Без ключа Windows будет установлена без активации. Выбрать редакцию можно вручную.</sys:String>
     <sys:String x:Key="L.Key.Error.Empty">Введите ключ продукта.</sys:String>
     <sys:String x:Key="L.Key.Error.WrongLength">Ключ продукта должен состоять из 25 символов.</sys:String>
-    <sys:String x:Key="L.Key.Error.InvalidCharacters">Ключ содержит недопустимые символы. Допустимы цифры 2–9 и латинские буквы, кроме I, O, S, B, L.</sys:String>
+    <sys:String x:Key="L.Key.Error.InvalidCharacters">Ключ содержит недопустимые символы. Допустимы цифры 2, 3, 4, 6, 7, 8, 9 и латинские буквы, кроме A, E, I, L, O, S, U, Z.</sys:String>
     <sys:String x:Key="L.Key.Error.InvalidKey">Указанный ключ продукта недействителен.</sys:String>
 
     <!-- Редакция -->

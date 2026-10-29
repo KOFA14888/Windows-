@@ -30,8 +30,16 @@ public static class ProductKeyValidator
     public const int KeyLength = 25;
     public const int GroupSize = 5;
 
-    /// <summary>Алфавит настоящих ключей: без 0/O, 1/I/L, 5/S, 8/B и т. п.</summary>
-    private const string AllowedAlphabet = "23456789BCDFGHJKMPQRTVWXY";
+    /// <summary>
+    /// Алфавит печатаемых ключей Windows.
+    ///
+    /// Историческая кодировка base-24 — «BCDFGHJKMPQRTVWXY2346789»: без
+    /// 0, 1, 5 и без букв A, E, I, L, O, S, U, Z (визуально неоднозначные).
+    /// Начиная с Windows 8 в самих ключах появилась буква N — она есть во всех
+    /// официальных KMS/generic-ключах (W269N-…, NPPR9-…, VK7JG-NPHTM-…),
+    /// поэтому в наборе печатаемых символов она обязана быть.
+    /// </summary>
+    private const string AllowedAlphabet = "2346789BCDFGHJKMNPQRTVWXY";
 
     /// <summary>Generic-ключи Windows 10 (используются для установки без активации).</summary>
     private static readonly Dictionary<string, WindowsEdition> GenericKeys = new(StringComparer.OrdinalIgnoreCase)
