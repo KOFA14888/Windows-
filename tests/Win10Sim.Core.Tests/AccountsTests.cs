@@ -130,7 +130,7 @@ public class AccountValidatorTests
     [Theory]
     [InlineData("", AccountValidationError.Empty)]
     [InlineData("   ", AccountValidationError.Empty)]
-    [InlineData("ThisNameIsWayTooLong", AccountValidationError.TooLong)]
+    [InlineData("abcdefghijklmnopqrstu", AccountValidationError.TooLong)]      // 21 символ — предел 20
     [InlineData("a/b", AccountValidationError.InvalidCharacters)]
     [InlineData("a:b", AccountValidationError.InvalidCharacters)]
     [InlineData("a@b", AccountValidationError.InvalidCharacters)]
