@@ -106,7 +106,7 @@ Reboot (логотип 5 с)
 ## 5. Проверки
 
 ```powershell
-dotnet test        # 68 тестов: ключи, состояния, установщик, OOBE, пароли, локализация
+dotnet test        # 111 тестов: ключи, состояния, установщик, OOBE, пароли, локализация
 python3 tools/check_xaml.py
 python3 tools/check_csharp.py
 ```

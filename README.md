@@ -97,7 +97,7 @@ Win10Sim.sln
 │     ├─ Themes/                Tokens.xaml, Styles.xaml, Lang.ru.xaml, Lang.en.xaml
 │     ├─ Infrastructure/        AppServices, SetupScreenBase, UiStrings, IAppHost
 │     └─ Platform/              Fullscreen, InsertKeyHook, TaskbarVisibility
-├─ tests/Win10Sim.Core.Tests/   ~68 xUnit-тестов (ключи, состояние, установщик, OOBE, пароли, локализация)
+├─ tests/Win10Sim.Core.Tests/   ~110 xUnit-тестов: ключи, состояние, установщик, OOBE, пароли, локализация
 ├─ tools/check_xaml.py          статическая проверка XAML/ресурсов без .NET
 ├─ docs/ARCHITECTURE.md         архитектура всего проекта
 ├─ docs/STAGE1.md               разбор ЭТАПА 1: поток, решения, чек-лист
