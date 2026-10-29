@@ -243,16 +243,15 @@ public class OobePreparerTests : IDisposable
     public async Task Prepare_ReportsMonotonicProgressAndAllSteps()
     {
         var reports = new List<PreparingProgress>();
-        var progress = new Progress<PreparingProgress>(reports.Add);
 
-        await OobePreparer.PrepareAsync(progress, CancellationToken.None);
-        await WaitUntilAsync(() => reports.Count > 0 && reports[^1].IsDone);
+        await OobePreparer.PrepareAsync(new SyncProgress<PreparingProgress>(reports.Add), CancellationToken.None);
 
         Assert.True(reports.Count > 10);
         for (int i = 1; i < reports.Count; i++)
             Assert.True(reports[i].Percent >= reports[i - 1].Percent, "прогресс не должен идти назад");
 
         Assert.Equal(100, reports[^1].Percent);
+        Assert.True(reports[^1].IsDone);
         Assert.Equal(Enum.GetValues<PreparingStep>().Length, reports.Select(r => r.Step).Distinct().Count());
     }
 
@@ -266,17 +265,14 @@ public class OobePreparerTests : IDisposable
         await Assert.ThrowsAnyAsync<OperationCanceledException>(() => preparing);
     }
 
-    private static async Task WaitUntilAsync(Func<bool> condition, int timeoutMs = 5000)
+    /// <summary>Синхронный IProgress: порядок доставки гарантирован (см. SetupInstallerTests).</summary>
+    private sealed class SyncProgress<T> : IProgress<T>
     {
-        for (int elapsed = 0; elapsed < timeoutMs; elapsed += 20)
-        {
-            if (condition())
-                return;
+        private readonly Action<T> _callback;
 
-            await Task.Delay(20);
-        }
+        public SyncProgress(Action<T> callback) => _callback = callback;
 
-        Assert.Fail("Условие не выполнилось за отведённое время.");
+        public void Report(T value) => _callback(value);
     }
 }
 

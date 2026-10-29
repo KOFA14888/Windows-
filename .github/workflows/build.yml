@@ -40,8 +40,28 @@ jobs:
       - name: Build
         run: dotnet build Win10Sim.sln -c $env:CONFIGURATION --no-restore -warnaserror
 
+      # Тесты запускаются через pwsh-обёртку: при падении вывод превращается в
+      # аннотации ::error::, которые видны через GitHub API (и в PR, и в агенте).
       - name: Test
-        run: dotnet test $env:TEST_PROJECT -c $env:CONFIGURATION --no-build --logger "console;verbosity=normal"
+        shell: pwsh
+        run: |
+          $log = dotnet test $env:TEST_PROJECT -c $env:CONFIGURATION --no-build `
+                   --logger "console;verbosity=normal" `
+                   --logger "trx;LogFileName=results.trx" `
+                   --results-directory TestResults 2>&1 | Out-String
+
+          Write-Host $log
+          $log | Out-File -FilePath test-output.txt -Encoding utf8
+
+          if ($LASTEXITCODE -ne 0) {
+            $relevant = $log -split "`r?`n" | Where-Object {
+              $_ -match '\[FAIL\]|Failed |Assert\.|Error Message|Expected:|Actual:|Stack Trace|error'
+            } | Select-Object -First 40
+            foreach ($line in $relevant) {
+              Write-Host "::error::$(($line -replace '%', '%25' -replace '\r', '').Trim())"
+            }
+            exit 1
+          }
 
       # --- Вариант 1: автономный single-file exe (~150 МБ). Запускается на любой
       #     Windows 10/11 без установленного .NET Runtime — это то, что нужно
@@ -79,6 +99,17 @@ jobs:
           Get-ChildItem publish -Recurse -File |
             Select-Object FullName, @{ n = 'MB'; e = { [math]::Round($_.Length / 1MB, 2) } } |
             Format-Table -AutoSize
+
+      - name: Upload test output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: |
+            TestResults/
+            test-output.txt
+          if-no-files-found: ignore
+          retention-days: 7
 
       - name: Upload standalone exe
         uses: actions/upload-artifact@v4

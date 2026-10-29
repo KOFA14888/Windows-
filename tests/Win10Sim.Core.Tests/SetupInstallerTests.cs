@@ -26,12 +26,12 @@ public class SetupInstallerTests : IDisposable
         var session = new SetupSession();
         var reports = new List<InstallProgress>();
 
-        var progress = new Progress<InstallProgress>(reports.Add);
-        await SetupInstaller.InstallAsync(session, progress, CancellationToken.None);
+        await SetupInstaller.InstallAsync(session, new SyncProgress<InstallProgress>(reports.Add), CancellationToken.None);
 
-        // Progress<T> доставляет колбэки через контекст синхронизации; в тесте
-        // без SynchronizationContext они идут в пул потоков — ждём фактического прихода.
-        await WaitUntilAsync(() => session.InstallProgress >= 100);
+        Assert.True(reports.Count > 100);
+        Assert.Equal(100, reports[^1].Percent);
+        for (int i = 1; i < reports.Count; i++)
+            Assert.True(reports[i].Percent >= reports[i - 1].Percent, "прогресс не должен идти назад");
 
         Assert.Equal(100, session.InstallProgress);
         Assert.NotNull(session.InstallStartedUtc);
@@ -45,7 +45,7 @@ public class SetupInstallerTests : IDisposable
         var session = new SetupSession();
         using var cts = new CancellationTokenSource();
 
-        Task installing = SetupInstaller.InstallAsync(session, new Progress<InstallProgress>(_ => { }), cts.Token);
+        Task installing = SetupInstaller.InstallAsync(session, new SyncProgress<InstallProgress>(_ => { }), cts.Token);
         cts.CancelAfter(TimeSpan.FromMilliseconds(150));
 
         await Assert.ThrowsAnyAsync<OperationCanceledException>(() => installing);
@@ -60,8 +60,7 @@ public class SetupInstallerTests : IDisposable
         PartitionInfo partition = DiskFactory.CreateDefault()[0].Partitions[2];
         var stages = new List<FormatStage>();
 
-        await SetupInstaller.FormatAsync(partition, new Progress<FormatStage>(stages.Add), CancellationToken.None);
-        await WaitUntilAsync(() => stages.Count >= 3);
+        await SetupInstaller.FormatAsync(partition, new SyncProgress<FormatStage>(stages.Add), CancellationToken.None);
 
         Assert.Equal(
             new[] { FormatStage.QuickFormat, FormatStage.CreatingFileSystem, FormatStage.Done },
@@ -75,17 +74,19 @@ public class SetupInstallerTests : IDisposable
             () => SetupInstaller.FormatAsync(null!, null, CancellationToken.None));
     }
 
-    private static async Task WaitUntilAsync(Func<bool> condition, int timeoutMs = 5000)
+    /// <summary>
+    /// IProgress, который вызывает колбэк синхронно. Progress&lt;T&gt; в тестах
+    /// не подходит: без SynchronizationContext он ставит колбэки в пул потоков,
+    /// и порядок доставки не гарантирован — проверки на монотонность становятся
+    /// флаки. В WPF-приложении Progress&lt;T&gt; нужен именно для маршалинга в UI-поток.
+    /// </summary>
+    private sealed class SyncProgress<T> : IProgress<T>
     {
-        for (int elapsed = 0; elapsed < timeoutMs; elapsed += 20)
-        {
-            if (condition())
-                return;
+        private readonly Action<T> _callback;
 
-            await Task.Delay(20);
-        }
+        public SyncProgress(Action<T> callback) => _callback = callback;
 
-        Assert.Fail("Условие не выполнилось за отведённое время.");
+        public void Report(T value) => _callback(value);
     }
 }
 
