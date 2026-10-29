@@ -28,9 +28,6 @@ public sealed class UserAccount
     [JsonIgnore]
     public bool HasPassword => !string.IsNullOrEmpty(PasswordHash);
 
-    [JsonIgnore]
-    public string PictureGlyph => "\uE77B";          // Segoe MDL2: Contact
-
     /// <summary>Профиль пользователя на «диске C:» — как в настоящей Windows.</summary>
     [JsonIgnore]
     public string ProfilePath => $@"C:\Users\{UserName}";

@@ -1,3 +1,5 @@
+using System.Buffers;
+
 namespace Win10Sim.Core.Accounts;
 
 public enum AccountValidationError
@@ -28,8 +30,11 @@ public static class AccountValidator
     /// <summary>
     /// Запрещённые символы в имени учётной записи Windows:
     /// " / \ [ ] : ; | = , + * ? &lt; &gt; @
+    /// SearchValues — кэшированный набор, поиск по нему заметно быстрее
+    /// (и это единственный вариант, который не ругает анализатор CA1870).
     /// </summary>
-    private static readonly char[] ForbiddenCharacters = "\"/\\[]:;|=,+*?<>@".ToCharArray();
+    private static readonly SearchValues<char> ForbiddenCharacters =
+        SearchValues.Create("\"/\\[]:;|=,+*?<>@");
 
     /// <summary>Зарезервированные имена DOS: CON, PRN, AUX, NUL, COM1..9, LPT1..9.</summary>
     private static readonly HashSet<string> ReservedNames = BuildReservedNames();
@@ -44,7 +49,7 @@ public static class AccountValidator
         if (name.Length > MaxUserNameLength)
             return new AccountValidation(false, AccountValidationError.TooLong, name);
 
-        if (name.IndexOfAny(ForbiddenCharacters) >= 0)
+        if (name.AsSpan().IndexOfAny(ForbiddenCharacters) >= 0)
             return new AccountValidation(false, AccountValidationError.InvalidCharacters, name);
 
         if (name.EndsWith('.') || name.EndsWith(' '))

@@ -1,3 +1,4 @@
+using System.IO;
 using Win10Sim.App.Localization;
 using Win10Sim.Core.Persistence;
 using Win10Sim.Core.Setup;
