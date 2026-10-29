@@ -57,11 +57,13 @@ public static class AccountValidator
         if (name.AsSpan().IndexOfAny(ForbiddenCharacters) >= 0)
             return new AccountValidation(false, AccountValidationError.InvalidCharacters, name);
 
-        if (name.EndsWith('.') || name.EndsWith(' '))
-            return new AccountValidation(false, AccountValidationError.EndsWithDotOrSpace, name);
-
+        // «...» — это частный случай точки в конце, поэтому проверяется раньше:
+        // пользователю полезнее узнать, что имя не может состоять из точек.
         if (name.All(c => c == '.'))
             return new AccountValidation(false, AccountValidationError.AllDots, name);
+
+        if (name.EndsWith('.') || name.EndsWith(' '))
+            return new AccountValidation(false, AccountValidationError.EndsWithDotOrSpace, name);
 
         // Windows регистронезависим для имён: "con" — тоже зарезервированное имя,
         // и "NUL.txt" тоже.
