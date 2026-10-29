@@ -46,6 +46,7 @@ public static class ProductKeyValidator
     {
         ["YTMG3-N6DKC-DKB77-7M9GH-8HVX7"] = WindowsEdition.Home,
         ["VK7JG-NPHTM-C97JM-9MPGT-3V66T"] = WindowsEdition.Pro,
+        ["W269N-WFGWX-YVC9B-4J6C9-T83GX"] = WindowsEdition.Pro,      // KMS-ключ Windows 10/11 Pro
         ["NPPR9-FWDCX-D2C8J-H872K-2YT43"] = WindowsEdition.Enterprise
     };
 

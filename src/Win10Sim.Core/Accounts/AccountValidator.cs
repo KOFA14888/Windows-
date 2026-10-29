@@ -39,11 +39,16 @@ public static class AccountValidator
     /// <summary>Зарезервированные имена DOS: CON, PRN, AUX, NUL, COM1..9, LPT1..9.</summary>
     private static readonly HashSet<string> ReservedNames = BuildReservedNames();
 
+    /// <summary>
+    /// Проверка имени учётной записи ровно в том виде, в каком его ввели.
+    /// Ввод не «подчищается»: если пользователь поставил пробел или точку в
+    /// конце, это ошибка (как в Windows), а не повод молча их удалить.
+    /// </summary>
     public static AccountValidation ValidateUserName(string? userName)
     {
-        string name = (userName ?? string.Empty).Trim();
+        string name = userName ?? string.Empty;
 
-        if (name.Length == 0)
+        if (string.IsNullOrWhiteSpace(name))
             return new AccountValidation(false, AccountValidationError.Empty, name);
 
         if (name.Length > MaxUserNameLength)

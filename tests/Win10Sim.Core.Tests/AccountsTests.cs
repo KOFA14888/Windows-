@@ -151,12 +151,21 @@ public class AccountValidatorTests
     }
 
     [Fact]
-    public void Name_IsTrimmedInPreview()
+    public void Preview_KeepsValidNameAsIs()
     {
-        AccountValidation result = AccountValidator.ValidateUserName("  ivan  ");
+        AccountValidation result = AccountValidator.ValidateUserName("ivan");
 
         Assert.True(result.IsValid);
         Assert.Equal("ivan", result.Preview);
+    }
+
+    [Fact]
+    public void SurroundingSpaces_AreAnErrorNotASilentTrim()
+    {
+        AccountValidation result = AccountValidator.ValidateUserName(" ivan ");
+
+        Assert.False(result.IsValid);
+        Assert.Equal(AccountValidationError.EndsWithDotOrSpace, result.Error);
     }
 
     [Theory]
