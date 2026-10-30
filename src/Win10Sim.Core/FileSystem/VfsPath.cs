@@ -1,3 +1,5 @@
+using System.Buffers;
+
 namespace Win10Sim.Core.FileSystem;
 
 /// <summary>
@@ -8,6 +10,13 @@ namespace Win10Sim.Core.FileSystem;
 /// </summary>
 public static class VfsPath
 {
+    /// <summary>
+    /// Символы, запрещённые в именах Windows. Кэшированная таблица поиска:
+    /// проверка выполняется на каждое создание/переименование файла.
+    /// </summary>
+    private static readonly SearchValues<char> InvalidNameChars =
+        SearchValues.Create("\"/\\[]:;|=,+*?<>");
+
     public const string Root = @"C:\";
     public const string Drive = "C:";
 
@@ -113,7 +122,7 @@ public static class VfsPath
             return false;
         }
 
-        if (value.IndexOfAny("\"/\\[]:;|=,+*?<>".ToCharArray()) >= 0)
+        if (value.AsSpan().IndexOfAny(InvalidNameChars) >= 0)
         {
             error = "Имя содержит недопустимые символы.";
             return false;
@@ -127,7 +136,7 @@ public static class VfsPath
 
         string stem = value.Split('.')[0].ToUpperInvariant();
         if (stem is "CON" or "PRN" or "AUX" or "NUL" ||
-            (stem.Length == 4 && (stem.StartsWith("COM") || stem.StartsWith("LPT")) && char.IsDigit(stem[3])))
+            (stem.Length == 4 && (stem.StartsWith("COM", StringComparison.Ordinal) || stem.StartsWith("LPT", StringComparison.Ordinal)) && char.IsDigit(stem[3])))
         {
             error = "Это имя зарезервировано системой.";
             return false;

@@ -28,7 +28,7 @@ public partial class CmdView : UserControl, ISimApp, ISimWindowAware
 
         InitializeComponent();
 
-        foreach (string line in _processor.Banner)
+        foreach (string line in CommandProcessor.Banner)
             WriteLine(line);
 
         WriteLine(string.Empty);

@@ -12,7 +12,7 @@ public interface IVirtualFileSystem
 
     event EventHandler? Changed;
 
-    VfsNode? Get(string path);
+    VfsNode? Find(string path);
 
     bool Exists(string path);
 
@@ -26,9 +26,9 @@ public interface IVirtualFileSystem
 
     void Delete(string path, bool recursive = false);
 
-    void Move(string from, string to);
+    void Move(string source, string destination);
 
-    void Copy(string from, string to);
+    void Copy(string source, string destination);
 
     IReadOnlyList<VfsNode> Enumerate(string path);
 

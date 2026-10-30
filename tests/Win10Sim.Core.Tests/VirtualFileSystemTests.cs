@@ -178,7 +178,7 @@ public class VirtualFileSystemTests
 
         vfs.CreateFile(@"C:\a.txt", "1234");
 
-        Assert.Equal(8, vfs.Get(@"C:\a.txt")!.SizeBytes);      // UTF-16: 4 символа × 2 байта
+        Assert.Equal(8, vfs.Find(@"C:\a.txt")!.SizeBytes);      // UTF-16: 4 символа × 2 байта
     }
 
     [Fact]

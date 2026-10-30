@@ -23,7 +23,7 @@ public sealed class CommandResult
 
     public static CommandResult Empty { get; } = new(Array.Empty<string>());
 
-    public static CommandResult Single(string line, int exitCode = 0) => new(new[] { line }, exitCode: exitCode);
+    public static CommandResult FromLine(string line, int exitCode = 0) => new(new[] { line }, exitCode: exitCode);
 }
 
 /// <summary>Контекст выполнения: рабочая папка и доступ к «железу» симулятора.</summary>

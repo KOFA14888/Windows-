@@ -25,7 +25,7 @@ public sealed class PingCommand : ICommand
     public async Task<CommandResult> ExecuteAsync(CommandContext context, IReadOnlyList<string> arguments, CancellationToken cancellationToken)
     {
         if (arguments.Count == 0)
-            return CommandResult.Single("Использование: ping [-n число] [-l размер] [-w таймаут] имя_узла");
+            return CommandResult.FromLine("Использование: ping [-n число] [-l размер] [-w таймаут] имя_узла");
 
         int count = 4;
         int bufferSize = 32;
@@ -62,7 +62,7 @@ public sealed class PingCommand : ICommand
         }
 
         if (string.IsNullOrWhiteSpace(host))
-            return CommandResult.Single("Использование: ping имя_узла");
+            return CommandResult.FromLine("Использование: ping имя_узла");
 
         count = Math.Clamp(count, 1, 20);
         bufferSize = Math.Clamp(bufferSize, 32, 65500);

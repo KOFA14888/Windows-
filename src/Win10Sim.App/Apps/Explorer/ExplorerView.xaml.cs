@@ -60,7 +60,7 @@ public partial class ExplorerView : UserControl, ISimApp
         // Проводник понимает и папку, и файл: файл открывает родительскую папку
         // и выделяет его — как двойной клик в настоящей Windows.
         string path = VfsPath.Normalize(arguments, VfsPath.Root);
-        VfsNode? node = _fileSystem.Get(path);
+        VfsNode? node = _fileSystem.Find(path);
 
         if (node is null)
             return;

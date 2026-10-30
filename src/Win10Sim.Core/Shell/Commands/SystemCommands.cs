@@ -19,7 +19,7 @@ public sealed class HelpCommand : ICommand
         {
             ICommand? command = _processor.Find(arguments[0].TrimStart('/').ToLowerInvariant());
             return Task.FromResult(command is null
-                ? CommandResult.Single($"Команда не найдена: {arguments[0]}")
+                ? CommandResult.FromLine($"Команда не найдена: {arguments[0]}")
                 : new CommandResult(command.Usage.Replace("\r\n", "\n").Split('\n')));
         }
 
@@ -77,9 +77,9 @@ public sealed class WhoAmICommand : ICommand
 
     public Task<CommandResult> ExecuteAsync(CommandContext context, IReadOnlyList<string> arguments, CancellationToken cancellationToken)
     {
-        string format = arguments.FirstOrDefault()?.ToUpperInvariant() ?? string.Empty;
+        string format = arguments.Count > 0 ? arguments[0].ToUpperInvariant() : string.Empty;
 
-        return Task.FromResult(CommandResult.Single(format switch
+        return Task.FromResult(CommandResult.FromLine(format switch
         {
             "/UPN" => $"{context.UserName}@desktop-sim",
             "/FQDN" => $"desktop-sim\\{context.UserName}",
@@ -95,7 +95,7 @@ public sealed class HostnameCommand : ICommand
     public string Help => "HOSTNAME     Вывод имени компьютера.";
 
     public Task<CommandResult> ExecuteAsync(CommandContext context, IReadOnlyList<string> arguments, CancellationToken cancellationToken)
-        => Task.FromResult(CommandResult.Single("DESKTOP-SIM"));
+        => Task.FromResult(CommandResult.FromLine("DESKTOP-SIM"));
 }
 
 /// <summary>date.</summary>
@@ -108,7 +108,7 @@ public sealed class DateCommand : ICommand
     public Task<CommandResult> ExecuteAsync(CommandContext context, IReadOnlyList<string> arguments, CancellationToken cancellationToken)
     {
         string text = DateTime.Now.ToString("dd.MM.yyyy", CultureInfo.CurrentCulture);
-        return Task.FromResult(CommandResult.Single(
+        return Task.FromResult(CommandResult.FromLine(
             arguments.Any(a => a.Equals("/t", StringComparison.OrdinalIgnoreCase))
                 ? text
                 : "Текущая дата: " + text + " (изменение в симуляторе недоступно)"));
@@ -125,7 +125,7 @@ public sealed class TimeCommand : ICommand
     public Task<CommandResult> ExecuteAsync(CommandContext context, IReadOnlyList<string> arguments, CancellationToken cancellationToken)
     {
         string text = DateTime.Now.ToString("HH:mm:ss", CultureInfo.CurrentCulture);
-        return Task.FromResult(CommandResult.Single(
+        return Task.FromResult(CommandResult.FromLine(
             arguments.Any(a => a.Equals("/t", StringComparison.OrdinalIgnoreCase))
                 ? text
                 : "Текущее время: " + text + " (изменение в симуляторе недоступно)"));

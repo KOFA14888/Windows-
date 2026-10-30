@@ -23,7 +23,7 @@ public sealed class DirCommand : ICommand
             ? context.CurrentDirectory
             : VfsPath.Normalize(path, context.CurrentDirectory);
 
-        VfsNode node = context.FileSystem.Get(directory)
+        VfsNode node = context.FileSystem.Find(directory)
                        ?? throw new VfsException($"Не удаётся найти путь: {directory}");
 
         if (!node.IsDirectory)
@@ -116,19 +116,19 @@ public sealed class CdCommand : ICommand
 
     public Task<CommandResult> ExecuteAsync(CommandContext context, IReadOnlyList<string> arguments, CancellationToken cancellationToken)
     {
-        string? target = arguments.FirstOrDefault();
+        string? target = arguments.Count > 0 ? arguments[0] : null;
 
         if (string.IsNullOrWhiteSpace(target))
-            return Task.FromResult(CommandResult.Single(context.CurrentDirectory));
+            return Task.FromResult(CommandResult.FromLine(context.CurrentDirectory));
 
         string path = VfsPath.Normalize(target, context.CurrentDirectory);
-        VfsNode? node = context.FileSystem.Get(path);
+        VfsNode? node = context.FileSystem.Find(path);
 
         if (node is null)
-            return Task.FromResult(CommandResult.Single("Системе не удается найти указанный путь."));
+            return Task.FromResult(CommandResult.FromLine("Системе не удается найти указанный путь."));
 
         if (!node.IsDirectory)
-            return Task.FromResult(CommandResult.Single("Не удается выполнить команду: указанный путь не является папкой."));
+            return Task.FromResult(CommandResult.FromLine("Не удается выполнить команду: указанный путь не является папкой."));
 
         context.CurrentDirectory = path;
         return Task.FromResult(CommandResult.Empty);
@@ -146,7 +146,7 @@ public sealed class MdCommand : ICommand
     public Task<CommandResult> ExecuteAsync(CommandContext context, IReadOnlyList<string> arguments, CancellationToken cancellationToken)
     {
         if (arguments.Count == 0)
-            return Task.FromResult(CommandResult.Single("Синтаксис команды: MD [диск:]путь"));
+            return Task.FromResult(CommandResult.FromLine("Синтаксис команды: MD [диск:]путь"));
 
         foreach (string argument in arguments)
             context.FileSystem.CreateDirectory(VfsPath.Normalize(argument, context.CurrentDirectory));
@@ -169,16 +169,16 @@ public sealed class RdCommand : ICommand
         string? path = arguments.FirstOrDefault(a => !a.StartsWith('/'));
 
         if (path is null)
-            return Task.FromResult(CommandResult.Single("Синтаксис команды: RD [/S] [диск:]путь"));
+            return Task.FromResult(CommandResult.FromLine("Синтаксис команды: RD [/S] [диск:]путь"));
 
         string normalized = VfsPath.Normalize(path, context.CurrentDirectory);
-        VfsNode? node = context.FileSystem.Get(normalized) ?? throw new VfsException("Системе не удается найти указанный путь.");
+        VfsNode? node = context.FileSystem.Find(normalized) ?? throw new VfsException("Системе не удается найти указанный путь.");
 
         if (!node.IsDirectory)
-            return Task.FromResult(CommandResult.Single("Указанный путь не является каталогом."));
+            return Task.FromResult(CommandResult.FromLine("Указанный путь не является каталогом."));
 
         if (normalized.Equals(VfsPath.Normalize(context.CurrentDirectory), StringComparison.OrdinalIgnoreCase))
-            return Task.FromResult(CommandResult.Single("Нельзя удалить текущий каталог."));
+            return Task.FromResult(CommandResult.FromLine("Нельзя удалить текущий каталог."));
 
         context.FileSystem.Delete(normalized, recursive);
         return Task.FromResult(CommandResult.Empty);
@@ -197,15 +197,15 @@ public sealed class DelCommand : ICommand
     {
         string[] targets = arguments.Where(a => !a.StartsWith('/')).ToArray();
         if (targets.Length == 0)
-            return Task.FromResult(CommandResult.Single("Синтаксис команды: DEL имя_файла"));
+            return Task.FromResult(CommandResult.FromLine("Синтаксис команды: DEL имя_файла"));
 
         foreach (string target in targets)
         {
             string path = VfsPath.Normalize(target, context.CurrentDirectory);
-            VfsNode? node = context.FileSystem.Get(path) ?? throw new VfsException($"Не удается найти {path}");
+            VfsNode? node = context.FileSystem.Find(path) ?? throw new VfsException($"Не удается найти {path}");
 
             if (node.IsDirectory)
-                return Task.FromResult(CommandResult.Single($"{path} — это папка, используйте RD."));
+                return Task.FromResult(CommandResult.FromLine($"{path} — это папка, используйте RD."));
 
             context.FileSystem.Delete(path);
         }
@@ -224,13 +224,13 @@ public sealed class CopyCommand : ICommand
     public Task<CommandResult> ExecuteAsync(CommandContext context, IReadOnlyList<string> arguments, CancellationToken cancellationToken)
     {
         if (arguments.Count < 2)
-            return Task.FromResult(CommandResult.Single("Синтаксис команды: COPY источник назначение"));
+            return Task.FromResult(CommandResult.FromLine("Синтаксис команды: COPY источник назначение"));
 
         context.FileSystem.Copy(
             VfsPath.Normalize(arguments[0], context.CurrentDirectory),
             VfsPath.Normalize(arguments[1], context.CurrentDirectory));
 
-        return Task.FromResult(CommandResult.Single("        1 файлов скопировано."));
+        return Task.FromResult(CommandResult.FromLine("        1 файлов скопировано."));
     }
 }
 
@@ -244,13 +244,13 @@ public sealed class MoveCommand : ICommand
     public Task<CommandResult> ExecuteAsync(CommandContext context, IReadOnlyList<string> arguments, CancellationToken cancellationToken)
     {
         if (arguments.Count < 2)
-            return Task.FromResult(CommandResult.Single("Синтаксис команды: MOVE источник назначение"));
+            return Task.FromResult(CommandResult.FromLine("Синтаксис команды: MOVE источник назначение"));
 
         context.FileSystem.Move(
             VfsPath.Normalize(arguments[0], context.CurrentDirectory),
             VfsPath.Normalize(arguments[1], context.CurrentDirectory));
 
-        return Task.FromResult(CommandResult.Single("        1 файлов перемещено."));
+        return Task.FromResult(CommandResult.FromLine("        1 файлов перемещено."));
     }
 }
 
@@ -265,14 +265,14 @@ public sealed class RenCommand : ICommand
     public Task<CommandResult> ExecuteAsync(CommandContext context, IReadOnlyList<string> arguments, CancellationToken cancellationToken)
     {
         if (arguments.Count < 2)
-            return Task.FromResult(CommandResult.Single("Синтаксис команды: REN старое_имя новое_имя"));
+            return Task.FromResult(CommandResult.FromLine("Синтаксис команды: REN старое_имя новое_имя"));
 
         string source = VfsPath.Normalize(arguments[0], context.CurrentDirectory);
         if (!VfsPath.IsValidName(arguments[1], out string error))
-            return Task.FromResult(CommandResult.Single(error));
+            return Task.FromResult(CommandResult.FromLine(error));
 
         if (arguments[1].Contains('\\') || arguments[1].Contains('/'))
-            return Task.FromResult(CommandResult.Single("Новое имя не должно содержать путь."));
+            return Task.FromResult(CommandResult.FromLine("Новое имя не должно содержать путь."));
 
         string target = VfsPath.Combine(VfsPath.GetParent(source), arguments[1]);
         context.FileSystem.Move(source, target);
@@ -290,7 +290,7 @@ public sealed class TypeCommand : ICommand
     public Task<CommandResult> ExecuteAsync(CommandContext context, IReadOnlyList<string> arguments, CancellationToken cancellationToken)
     {
         if (arguments.Count == 0)
-            return Task.FromResult(CommandResult.Single("Синтаксис команды: TYPE имя_файла"));
+            return Task.FromResult(CommandResult.FromLine("Синтаксис команды: TYPE имя_файла"));
 
         string path = VfsPath.Normalize(arguments[0], context.CurrentDirectory);
         string text = context.FileSystem.ReadAllText(path);
@@ -316,6 +316,6 @@ public sealed class EchoCommand : ICommand
             return Task.FromResult(CommandResult.Empty);
         }
 
-        return Task.FromResult(CommandResult.Single(text));
+        return Task.FromResult(CommandResult.FromLine(text));
     }
 }

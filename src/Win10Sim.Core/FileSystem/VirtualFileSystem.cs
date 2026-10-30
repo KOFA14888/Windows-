@@ -40,7 +40,7 @@ public sealed class VirtualFileSystem : IVirtualFileSystem
 
     public event EventHandler? Changed;
 
-    public VfsNode? Get(string path)
+    public VfsNode? Find(string path)
     {
         lock (_gate)
         {
@@ -159,7 +159,7 @@ public sealed class VirtualFileSystem : IVirtualFileSystem
         }
     }
 
-    public void Move(string from, string to)
+    public void Move(string source, string destination)
     {
         lock (_gate)
         {
@@ -194,7 +194,7 @@ public sealed class VirtualFileSystem : IVirtualFileSystem
         }
     }
 
-    public void Copy(string from, string to)
+    public void Copy(string source, string destination)
     {
         lock (_gate)
         {

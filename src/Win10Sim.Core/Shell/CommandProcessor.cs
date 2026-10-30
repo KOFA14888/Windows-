@@ -53,7 +53,7 @@ public sealed class CommandProcessor
 
     public string Prompt => Context.Prompt;
 
-    public IReadOnlyList<string> Banner => CommandContext.Banner(WindowsVersion);
+    public static IReadOnlyList<string> Banner => CommandContext.Banner(WindowsVersion);
 
     public void Register(ICommand command)
     {
@@ -111,11 +111,11 @@ public sealed class CommandProcessor
         }
         catch (VfsException ex)
         {
-            return CommandResult.Single(ex.Message);
+            return CommandResult.FromLine(ex.Message);
         }
         catch (OperationCanceledException)
         {
-            return CommandResult.Single("^C");
+            return CommandResult.FromLine("^C");
         }
     }
 
