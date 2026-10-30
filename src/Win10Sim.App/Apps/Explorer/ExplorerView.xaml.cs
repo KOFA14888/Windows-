@@ -41,6 +41,10 @@ public partial class ExplorerView : UserControl, ISimApp
         FileList.ItemsSource = _items;
         _fileSystem.Changed += OnFileSystemChanged;
 
+        // Окно закрыли — отписываемся, иначе виртуальный диск держит Проводник
+        // (и весь его визуальный tree) до выхода из приложения.
+        Unloaded += (_, _) => _fileSystem.Changed -= OnFileSystemChanged;
+
         BuildNavigation();
         Navigate(VfsPath.Root, addHistory: false);
     }
