@@ -42,8 +42,6 @@ public partial class StartMenuView : UserControl
 
     public event EventHandler? SettingsRequested;
 
-    public event EventHandler? DismissRequested;
-
     public event EventHandler<PowerAction>? PowerActionRequested;
 
     public void SetUser(string displayName)
