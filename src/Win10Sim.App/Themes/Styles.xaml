@@ -898,12 +898,14 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="{TemplateBinding Icon}"
+                            <!-- Icon — object, поэтому Binding, а не TemplateBinding:
+                                 так строка-глиф корректно приводится к Text. -->
+                            <TextBlock Text="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}"
                                        FontFamily="{StaticResource Font.Icons}"
                                        FontSize="13"
                                        Margin="0,0,10,0"
                                        VerticalAlignment="Center"
-                                       Foreground="{TemplateBinding Foreground}" />
+                                       Foreground="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" />
                             <ContentPresenter Grid.Column="1" ContentSource="Header" VerticalAlignment="Center" />
                         </Grid>
                     </Border>
