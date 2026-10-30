@@ -155,7 +155,7 @@ public partial class EdgeView : UserControl, ISimApp
         // Похоже на домен: есть точка и нет пробелов.
         bool looksLikeHost = !text.Contains(' ', StringComparison.Ordinal)
                              && text.Contains('.', StringComparison.Ordinal)
-                             && !text.EndsWith('.', StringComparison.Ordinal);
+                             && !text.EndsWith(".", StringComparison.Ordinal);
 
         return looksLikeHost
             ? "https://" + text

@@ -224,6 +224,23 @@ public class SimWindow : ContentControl
     /// <summary>Размер рабочей области (передаётся менеджером окон при изменении размера экрана).</summary>
     public Size WorkArea { get; set; } = new(1600, 900);
 
+    /// <summary>
+    /// Позиция на Canvas, к которому привязано окно. У Canvas нет свойств Left/Top —
+    /// это присоединённые свойства, поэтому даём удобные обёртки: остальной код
+    /// читается как обычное оконное программирование.
+    /// </summary>
+    private double Left
+    {
+        get => Canvas.GetLeft(this) is double value && !double.IsNaN(value) ? value : 0;
+        set => Canvas.SetLeft(this, value);
+    }
+
+    private double Top
+    {
+        get => Canvas.GetTop(this) is double value && !double.IsNaN(value) ? value : 0;
+        set => Canvas.SetTop(this, value);
+    }
+
     private CaptionButton CreateCaptionButton(string glyph, string tooltip) => new()
     {
         Glyph = glyph,
@@ -239,7 +256,7 @@ public class SimWindow : ContentControl
             : new SolidColorBrush(Color.FromRgb(0x22, 0x22, 0x22));
         _title.Foreground = active ? Brushes.White : new SolidColorBrush(Color.FromRgb(0x9A, 0x9A, 0x9A));
         _frame.BorderBrush = active
-            ? new SolidColorBrush(Color.FromRgb(0x0078D7))
+            ? new SolidColorBrush(Color.FromRgb(0x00, 0x78, 0xD7))
             : new SolidColorBrush(Color.FromRgb(0x3A, 0x3A, 0x3A));
     }
 
