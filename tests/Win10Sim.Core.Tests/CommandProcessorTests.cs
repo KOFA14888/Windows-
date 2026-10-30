@@ -191,12 +191,12 @@ public class CommandProcessorTests
     }
 
     [Fact]
-    public void History_KeepsCommandsInOrder()
+    public async Task History_KeepsCommandsInOrder()
     {
         (CommandProcessor processor, _) = Create();
 
-        _ = processor.ExecuteAsync("ver").GetAwaiter().GetResult();
-        _ = processor.ExecuteAsync("dir").GetAwaiter().GetResult();
+        await processor.ExecuteAsync("ver");
+        await processor.ExecuteAsync("dir");
 
         Assert.Equal(new[] { "ver", "dir" }, processor.History);
     }

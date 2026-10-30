@@ -20,8 +20,8 @@ namespace Win10Sim.App.Shell;
 public class SimWindow : ContentControl
 {
     public const double TitleBarHeight = 32;
-    public const double MinWidth = 380;
-    public const double MinHeight = 240;
+    public const double MinWindowWidth = 380;
+    public const double MinWindowHeight = 240;
 
     private readonly Grid _root;
     private readonly Border _frame;
@@ -45,8 +45,8 @@ public class SimWindow : ContentControl
 
         Width = 900;
         Height = 560;
-        MinWidth = MinWidth;
-        MinHeight = MinHeight;
+        MinWidth = MinWindowWidth;
+        MinHeight = MinWindowHeight;
         HorizontalAlignment = HorizontalAlignment.Left;
         VerticalAlignment = VerticalAlignment.Top;
         SnapsToDevicePixels = true;
@@ -292,8 +292,8 @@ public class SimWindow : ContentControl
             return;
         }
 
-        Width = Math.Min(Width, Math.Max(MinWidth, workArea.Width));
-        Height = Math.Min(Height, Math.Max(MinHeight, workArea.Height));
+        Width = Math.Min(Width, Math.Max(MinWindowWidth, workArea.Width));
+        Height = Math.Min(Height, Math.Max(MinWindowHeight, workArea.Height));
         Left = Math.Clamp(Left, 0, Math.Max(0, workArea.Width - Width));
         Top = Math.Clamp(Top, 0, Math.Max(0, workArea.Height - Height));
     }
@@ -307,8 +307,8 @@ public class SimWindow : ContentControl
 
         Left = Math.Min(120 + index * offset, maxLeft);
         Top = Math.Min(90 + index * offset, maxTop);
-        Width = Math.Min(900, Math.Max(MinWidth, WorkArea.Width - 200));
-        Height = Math.Min(580, Math.Max(MinHeight, WorkArea.Height - 140));
+        Width = Math.Min(900, Math.Max(MinWindowWidth, WorkArea.Width - 200));
+        Height = Math.Min(580, Math.Max(MinWindowHeight, WorkArea.Height - 140));
     }
 
     private void OnTitleBarMouseDown(object sender, MouseButtonEventArgs e)
@@ -357,7 +357,7 @@ public class SimWindow : ContentControl
             return;
 
         Point current = e.GetPosition(Application.Current.MainWindow);
-        Width = Math.Clamp(_dragOrigin.X + (current.X - _dragStart.X), MinWidth, WorkArea.Width - Left);
+        Width = Math.Clamp(_dragOrigin.X + (current.X - _dragStart.X), MinWindowWidth, WorkArea.Width - Left);
         Height = Math.Clamp(_dragOrigin.Y + (current.Y - _dragStart.Y), MinHeight, WorkArea.Height - Top);
     }
 
