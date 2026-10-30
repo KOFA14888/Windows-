@@ -48,7 +48,7 @@ public sealed class VirtualFileSystem : IVirtualFileSystem
         }
     }
 
-    public bool Exists(string path) => Get(path) is not null;
+    public bool Exists(string path) => Find(path) is not null;
 
     public VfsNode CreateDirectory(string path)
     {
@@ -163,10 +163,10 @@ public sealed class VirtualFileSystem : IVirtualFileSystem
     {
         lock (_gate)
         {
-            string sourcePath = VfsPath.Normalize(from);
+            string sourcePath = VfsPath.Normalize(source);
             VfsNode node = Resolve(sourcePath) ?? throw new VfsException($"Не удаётся найти путь: {sourcePath}");
 
-            string targetPath = VfsPath.Normalize(to);
+            string targetPath = VfsPath.Normalize(destination);
 
             // Если цель — существующий каталог, переносим внутрь него с тем же именем.
             VfsNode? target = Resolve(targetPath);
@@ -198,10 +198,10 @@ public sealed class VirtualFileSystem : IVirtualFileSystem
     {
         lock (_gate)
         {
-            string sourcePath = VfsPath.Normalize(from);
+            string sourcePath = VfsPath.Normalize(source);
             VfsNode node = Resolve(sourcePath) ?? throw new VfsException($"Не удаётся найти путь: {sourcePath}");
 
-            string targetPath = VfsPath.Normalize(to);
+            string targetPath = VfsPath.Normalize(destination);
             VfsNode? target = Resolve(targetPath);
             if (target is { IsDirectory: true })
                 targetPath = VfsPath.Combine(targetPath, node.Name);
