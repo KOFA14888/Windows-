@@ -29,6 +29,15 @@ public static class VfsPath
         if (value.Length == 0 || value == ".")
             return Normalize(currentDirectory ?? Root);
 
+        // "C:" — текущий каталог на диске C: (в cmd это именно так).
+        // Диск в симуляторе один, поэтому «текущий каталог диска» — корень.
+        if (value.Length == 2 && value[1] == ':' && char.IsLetter(value[0]))
+            return Root;
+
+        // "C:Users\ivan" — путь относительно текущего каталога диска C:.
+        if (value.Length > 2 && value[1] == ':' && char.IsLetter(value[0]) && value[2] != '\\')
+            value = value[..2] + "\\" + value[2..];
+
         // ".." и относительные пути раскрываются от текущего каталога.
         if (!IsAbsolute(value))
         {
