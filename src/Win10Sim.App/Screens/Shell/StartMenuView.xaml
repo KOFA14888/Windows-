@@ -1,0 +1,144 @@
+<UserControl x:Class="Win10Sim.App.Screens.Shell.StartMenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Width="620" Height="600"
+             FontFamily="{StaticResource Font.Ui}">
+
+    <!--
+        Меню «Пуск» Windows 10: список приложений слева, плитки справа,
+        поиск сверху, кнопка питания внизу. Анимация появления — в коде
+        (сдвиг снизу + прозрачность), чтобы не плодить триггеры в разметке.
+    -->
+    <Border Background="#F21F1F1F"
+            BorderBrush="#3F3F3F"
+            BorderThickness="1">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="28" ShadowDepth="0" Opacity="0.55" Color="#000000" />
+        </Border.Effect>
+
+        <Grid Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Поиск -->
+            <Border Grid.Row="0" Background="#0DFFFFFF" Padding="14,12">
+                <Border Background="#26FFFFFF" Height="34" BorderBrush="#4DFFFFFF" BorderThickness="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="&#xE721;"
+                                   FontFamily="{StaticResource Font.Icons}"
+                                   FontSize="13"
+                                   Foreground="#D0D0D0"
+                                   VerticalAlignment="Center"
+                                   Margin="10,0,8,0" />
+                        <TextBox x:Name="SearchInput"
+                                 Grid.Column="1"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 Foreground="#FFFFFF"
+                                 CaretBrush="#FFFFFF"
+                                 FontSize="13"
+                                 VerticalContentAlignment="Center"
+                                 TextChanged="OnSearchTextChanged" />
+                        <TextBlock x:Name="SearchPlaceholder"
+                                   Grid.Column="1"
+                                   Text="{DynamicResource L.Shell.Search}"
+                                   Foreground="#B0B0B0"
+                                   FontSize="13"
+                                   VerticalAlignment="Center"
+                                   IsHitTestVisible="False" />
+                    </Grid>
+                </Border>
+            </Border>
+
+            <!-- Основная область -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="260" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Список приложений -->
+                <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" Margin="8,6,0,0">
+                    <StackPanel>
+                        <TextBlock Text="{DynamicResource L.Shell.AllApps}"
+                                   FontSize="12"
+                                   Foreground="#B0B0B0"
+                                   Margin="10,4,0,8" />
+                        <StackPanel x:Name="AppList" />
+                    </StackPanel>
+                </ScrollViewer>
+
+                <!-- Результаты поиска появляются поверх правой колонки -->
+                <Border x:Name="SearchResultsPanel"
+                        Grid.Column="1"
+                        Margin="8,6,8,8"
+                        Background="#0DFFFFFF"
+                        Visibility="Collapsed">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel x:Name="SearchResults" Margin="4" />
+                    </ScrollViewer>
+                </Border>
+
+                <!-- Плитки -->
+                <ScrollViewer x:Name="TilesPanel" Grid.Column="1" VerticalScrollBarVisibility="Auto" Margin="8,6,8,8">
+                    <StackPanel>
+                        <TextBlock x:Name="TilesTitle"
+                                   Text="Продуктивность"
+                                   FontSize="12"
+                                   Foreground="#B0B0B0"
+                                   Margin="4,4,0,8" />
+                        <WrapPanel x:Name="Tiles" ItemWidth="120" ItemHeight="120" />
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+
+            <!-- Нижняя панель -->
+            <Border Grid.Row="2" Background="#14FFFFFF" Padding="12,8">
+                <Grid>
+                    <Button x:Name="UserButton"
+                            Style="{StaticResource Button.OobeLink}"
+                            HorizontalAlignment="Left"
+                            Click="OnUserClick">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Width="30" Height="30" CornerRadius="15" Background="{StaticResource Brush.Accent}">
+                                <TextBlock x:Name="UserInitial"
+                                           FontSize="14"
+                                           Foreground="#FFFFFF"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" />
+                            </Border>
+                            <TextBlock x:Name="UserNameText"
+                                       Margin="10,0,0,0"
+                                       VerticalAlignment="Center"
+                                       FontSize="13"
+                                       Foreground="#FFFFFF" />
+                        </StackPanel>
+                    </Button>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Style="{StaticResource Button.OobeLink}"
+                                Margin="0,0,10,0"
+                                Click="OnSettingsClick"
+                                ToolTip="{DynamicResource L.Shell.Settings}">
+                            <TextBlock Text="&#xE713;" FontFamily="{StaticResource Font.Icons}" FontSize="16" Foreground="#FFFFFF" />
+                        </Button>
+
+                        <Button x:Name="PowerButton"
+                                Style="{StaticResource Button.OobeLink}"
+                                Click="OnPowerClick"
+                                ToolTip="{DynamicResource L.Shell.Power}">
+                            <TextBlock Text="&#xE7E8;" FontFamily="{StaticResource Font.Icons}" FontSize="16" Foreground="#FFFFFF" />
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

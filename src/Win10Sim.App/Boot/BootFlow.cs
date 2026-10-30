@@ -4,6 +4,7 @@ using Win10Sim.App.Screens.Boot;
 using Win10Sim.App.Screens.Oobe;
 using Win10Sim.App.Screens.Placeholder;
 using Win10Sim.App.Screens.Setup;
+using Win10Sim.App.Screens.Shell;
 using Win10Sim.Core.Setup;
 
 namespace Win10Sim.App.Boot;
@@ -84,10 +85,9 @@ public sealed class BootFlow
         OsPhase.OobeHello => new OobeHelloView(_services),
         OsPhase.OobePreparing => new OobePreparingView(_services),
 
-        // ---------- ЭТАП 3 ещё не реализован ----------
-        // LockScreen/Desktop обслуживает экран-итог OOBE, пока ЭТАП 3 не добавит
-        // настоящий экран блокировки и рабочий стол.
-        OsPhase.LockScreen or OsPhase.Desktop => new OobeCompleteView(_services),
+        // ---------- ЭТАП 3–4: оболочка ----------
+        OsPhase.LockScreen => new LockScreenView(_services),
+        OsPhase.Desktop => new DesktopView(_services),
 
         // Неизвестная фаза (например, из более новой версии state.json):
         // лучше показать итог установки, чем пустое чёрное окно без выхода.

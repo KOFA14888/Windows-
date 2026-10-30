@@ -171,4 +171,152 @@
     <sys:String x:Key="L.Oobe.Done.Secure">Пароль в state.json не хранится: только соль и хэш.</sys:String>
     <sys:String x:Key="L.Oobe.Done.Restart">Пройти установку заново</sys:String>
 
+
+    <!-- ===== ЭТАП 3: оболочка ===== -->
+    <sys:String x:Key="L.Shell.Search">Поиск в Windows</sys:String>
+    <sys:String x:Key="L.Shell.SearchResults">Лучшее соответствие</sys:String>
+    <sys:String x:Key="L.Shell.NoResults">Нет результатов</sys:String>
+    <sys:String x:Key="L.Shell.AllApps">Все приложения</sys:String>
+    <sys:String x:Key="L.Shell.Power">Питание</sys:String>
+    <sys:String x:Key="L.Shell.Shutdown">Завершение работы</sys:String>
+    <sys:String x:Key="L.Shell.Restart">Перезагрузка</sys:String>
+    <sys:String x:Key="L.Shell.Sleep">Спящий режим</sys:String>
+    <sys:String x:Key="L.Shell.SignOut">Выход из системы</sys:String>
+    <sys:String x:Key="L.Shell.Lock">Заблокировать</sys:String>
+    <sys:String x:Key="L.Shell.Settings">Параметры</sys:String>
+    <sys:String x:Key="L.Shell.ThisPc">Этот компьютер</sys:String>
+    <sys:String x:Key="L.Shell.RecycleBin">Корзина</sys:String>
+    <sys:String x:Key="L.Shell.RecycleEmpty">Корзина пуста</sys:String>
+    <sys:String x:Key="L.Shell.Create">Создать</sys:String>
+    <sys:String x:Key="L.Shell.Folder">Папку</sys:String>
+    <sys:String x:Key="L.Shell.TextFile">Текстовый документ</sys:String>
+    <sys:String x:Key="L.Shell.Refresh">Обновить</sys:String>
+    <sys:String x:Key="L.Shell.Personalize">Персонализация</sys:String>
+    <sys:String x:Key="L.Shell.DisplaySettings">Параметры экрана</sys:String>
+    <sys:String x:Key="L.Shell.Open">Открыть</sys:String>
+    <sys:String x:Key="L.Shell.Close">Закрыть</sys:String>
+    <sys:String x:Key="L.Shell.Notifications">Уведомления</sys:String>
+    <sys:String x:Key="L.Shell.NoNotifications">Нет новых уведомлений</sys:String>
+    <sys:String x:Key="L.Shell.QuickActions">Быстрые действия</sys:String>
+    <sys:String x:Key="L.Shell.Wifi">Wi-Fi</sys:String>
+    <sys:String x:Key="L.Shell.Bluetooth">Bluetooth</sys:String>
+    <sys:String x:Key="L.Shell.Airplane">В самолёте</sys:String>
+    <sys:String x:Key="L.Shell.NightLight">Ночной свет</sys:String>
+    <sys:String x:Key="L.Shell.Battery">Батарея</sys:String>
+    <sys:String x:Key="L.Shell.AllSettings">Все параметры</sys:String>
+    <sys:String x:Key="L.Shell.SimNote">Симулятор: выключение недоступно, выход — Insert</sys:String>
+
+    <!-- Экран блокировки -->
+    <sys:String x:Key="L.Lock.Hint">Нажмите любую клавишу или щёлкните, чтобы разблокировать</sys:String>
+    <sys:String x:Key="L.Lock.Password">Пароль</sys:String>
+    <sys:String x:Key="L.Lock.SignIn">Вход</sys:String>
+    <sys:String x:Key="L.Lock.WrongPassword">Неверный пароль. Попробуйте ещё раз.</sys:String>
+    <sys:String x:Key="L.Lock.Welcome">С возвращением</sys:String>
+    <sys:String x:Key="L.Lock.HintLabel">Подсказка</sys:String>
+    <sys:String x:Key="L.Lock.Unlocking">Добро пожаловать</sys:String>
+    <sys:String x:Key="L.Lock.NoPassword">Вход без пароля</sys:String>
+
+    <!-- Toasts -->
+    <sys:String x:Key="L.Toast.Explorer">Проводник</sys:String>
+    <sys:String x:Key="L.Toast.Saved">Файл сохранён</sys:String>
+
+
+    <!-- ===== ЭТАП 4: Проводник ===== -->
+    <sys:String x:Key="L.Explorer.Open">Открыть</sys:String>
+    <sys:String x:Key="L.Explorer.NewFolder">Создать папку</sys:String>
+    <sys:String x:Key="L.Explorer.NewFile">Создать текстовый документ</sys:String>
+    <sys:String x:Key="L.Explorer.Delete">Удалить</sys:String>
+    <sys:String x:Key="L.Explorer.Rename">Переименовать</sys:String>
+    <sys:String x:Key="L.Explorer.Empty">Эта папка пуста</sys:String>
+    <sys:String x:Key="L.Explorer.Items">Элементов: {0}</sys:String>
+    <sys:String x:Key="L.Explorer.Folder">Папка с файлами</sys:String>
+    <sys:String x:Key="L.Explorer.TextFile">Текстовый документ</sys:String>
+    <sys:String x:Key="L.Explorer.TypeFolder">Папка</sys:String>
+    <sys:String x:Key="L.Explorer.TypeFile">Файл</sys:String>
+    <sys:String x:Key="L.Explorer.ThisPc">Этот компьютер</sys:String>
+    <sys:String x:Key="L.Explorer.Desktop">Рабочий стол</sys:String>
+    <sys:String x:Key="L.Explorer.Documents">Документы</sys:String>
+    <sys:String x:Key="L.Explorer.Downloads">Загрузки</sys:String>
+    <sys:String x:Key="L.Explorer.Pictures">Изображения</sys:String>
+    <sys:String x:Key="L.Explorer.Music">Музыка</sys:String>
+    <sys:String x:Key="L.Explorer.Videos">Видео</sys:String>
+    <sys:String x:Key="L.Explorer.RecycleBin">Корзина</sys:String>
+    <sys:String x:Key="L.Explorer.Disk">Локальный диск (C:)</sys:String>
+    <sys:String x:Key="L.Explorer.Free">Свободно: {0} из {1}</sys:String>
+    <sys:String x:Key="L.Explorer.NameDialog.CreateFolder">Новая папка</sys:String>
+    <sys:String x:Key="L.Explorer.NameDialog.CreateFile">Новый текстовый документ.txt</sys:String>
+    <sys:String x:Key="L.Explorer.NameDialog.Rename">Переименование</sys:String>
+    <sys:String x:Key="L.Explorer.NameDialog.Title">Введите имя</sys:String>
+    <sys:String x:Key="L.Explorer.Taken">Элемент с таким именем уже существует.</sys:String>
+    <sys:String x:Key="L.Explorer.NotFound">Папка недоступна.</sys:String>
+
+    <!-- ===== ЭТАП 4: Блокнот ===== -->
+    <sys:String x:Key="L.Notepad.File">Файл</sys:String>
+    <sys:String x:Key="L.Notepad.Edit">Правка</sys:String>
+    <sys:String x:Key="L.Notepad.View">Вид</sys:String>
+    <sys:String x:Key="L.Notepad.New">Создать</sys:String>
+    <sys:String x:Key="L.Notepad.Open">Открыть…</sys:String>
+    <sys:String x:Key="L.Notepad.Save">Сохранить</sys:String>
+    <sys:String x:Key="L.Notepad.SaveAs">Сохранить как…</sys:String>
+    <sys:String x:Key="L.Notepad.Exit">Выход</sys:String>
+    <sys:String x:Key="L.Notepad.Undo">Отменить</sys:String>
+    <sys:String x:Key="L.Notepad.Cut">Вырезать</sys:String>
+    <sys:String x:Key="L.Notepad.Copy">Копировать</sys:String>
+    <sys:String x:Key="L.Notepad.Paste">Вставить</sys:String>
+    <sys:String x:Key="L.Notepad.SelectAll">Выделить всё</sys:String>
+    <sys:String x:Key="L.Notepad.TimeDate">Время и дата</sys:String>
+    <sys:String x:Key="L.Notepad.WordWrap">Перенос по словам</sys:String>
+    <sys:String x:Key="L.Notepad.StatusBar">Строка {0}, столбец {1}</sys:String>
+    <sys:String x:Key="L.Notepad.Saved">Сохранено: {0}</sys:String>
+    <sys:String x:Key="L.Notepad.Untitled">Безымянный</sys:String>
+    <sys:String x:Key="L.Notepad.AutoSaved">Автосохранение</sys:String>
+    <sys:String x:Key="L.Notepad.Dialog.Title">Открыть файл</sys:String>
+    <sys:String x:Key="L.Notepad.Dialog.SaveTitle">Сохранить как</sys:String>
+    <sys:String x:Key="L.Notepad.Dialog.FileName">Имя файла</sys:String>
+    <sys:String x:Key="L.Notepad.Dialog.Folder">Папка</sys:String>
+    <sys:String x:Key="L.Notepad.Dialog.Empty">В этой папке нет текстовых файлов</sys:String>
+
+    <!-- ===== ЭТАП 4: Командная строка ===== -->
+    <sys:String x:Key="L.Cmd.Title">Командная строка</sys:String>
+    <sys:String x:Key="L.Cmd.Hint">Введите help для списка команд. Ctrl+C — прервать, Tab — дополнение.</sys:String>
+
+    <!-- ===== ЭТАП 4: Edge ===== -->
+    <sys:String x:Key="L.Edge.Address">Поиск или введите веб-адрес</sys:String>
+    <sys:String x:Key="L.Edge.NewTab">Новая вкладка</sys:String>
+    <sys:String x:Key="L.Edge.Loading">Загрузка…</sys:String>
+    <sys:String x:Key="L.Edge.NoRuntime">Не удалось запустить WebView2: на этом компьютере не установлен компонент Microsoft Edge WebView2 Runtime. Установите его с сайта Microsoft и откройте браузер снова.</sys:String>
+    <sys:String x:Key="L.Edge.Error">Не удалось открыть страницу: {0}</sys:String>
+    <sys:String x:Key="L.Edge.Home">Домашняя страница</sys:String>
+    <sys:String x:Key="L.Edge.Back">Назад</sys:String>
+    <sys:String x:Key="L.Edge.Forward">Вперёд</sys:String>
+    <sys:String x:Key="L.Edge.Refresh">Обновить</sys:String>
+
+    <!-- ===== ЭТАП 4: Параметры ===== -->
+    <sys:String x:Key="L.Settings.Title">Параметры</sys:String>
+    <sys:String x:Key="L.Settings.System">Система</sys:String>
+    <sys:String x:Key="L.Settings.Personalization">Персонализация</sys:String>
+    <sys:String x:Key="L.Settings.TimeLanguage">Время и язык</sys:String>
+    <sys:String x:Key="L.Settings.Accounts">Учётные записи</sys:String>
+    <sys:String x:Key="L.Settings.About">О системе</sys:String>
+    <sys:String x:Key="L.Settings.DeviceName">Имя устройства</sys:String>
+    <sys:String x:Key="L.Settings.Edition">Выпуск Windows</sys:String>
+    <sys:String x:Key="L.Settings.Version">Версия</sys:String>
+    <sys:String x:Key="L.Settings.Processor">Процессор</sys:String>
+    <sys:String x:Key="L.Settings.Memory">Оперативная память</sys:String>
+    <sys:String x:Key="L.Settings.User">Пользователь</sys:String>
+    <sys:String x:Key="L.Settings.Theme">Тема оформления</sys:String>
+    <sys:String x:Key="L.Settings.ThemeDark">Тёмная</sys:String>
+    <sys:String x:Key="L.Settings.ThemeLight">Светлая</sys:String>
+    <sys:String x:Key="L.Settings.Language">Язык интерфейса</sys:String>
+    <sys:String x:Key="L.Settings.ClockFormat">Формат времени</sys:String>
+    <sys:String x:Key="L.Settings.Clock24">24 часа</sys:String>
+    <sys:String x:Key="L.Settings.Clock12">12 часов</sys:String>
+    <sys:String x:Key="L.Settings.Password">Пароль учётной записи</sys:String>
+    <sys:String x:Key="L.Settings.PasswordSet">Задан (хэш PBKDF2-SHA256)</sys:String>
+    <sys:String x:Key="L.Settings.PasswordNone">Не задан</sys:String>
+    <sys:String x:Key="L.Settings.DiskUsage">Виртуальный диск C:</sys:String>
+    <sys:String x:Key="L.Settings.Applied">Изменения применены.</sys:String>
+
+    <sys:String x:Key="L.Notepad.Title">Блокнот</sys:String>
+
 </ResourceDictionary>

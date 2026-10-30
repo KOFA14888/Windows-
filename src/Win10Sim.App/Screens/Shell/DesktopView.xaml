@@ -1,0 +1,215 @@
+<UserControl x:Class="Win10Sim.App.Screens.Shell.DesktopView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:shell="clr-namespace:Win10Sim.App.Screens.Shell"
+             xmlns:controls="clr-namespace:Win10Sim.App.Controls"
+             FontFamily="{StaticResource Font.Ui}">
+
+    <UserControl.Resources>
+        <!-- Иконка рабочего стола: глиф + подпись, подсветка при наведении -->
+        <Style x:Key="DesktopIcon" TargetType="Border">
+            <Setter Property="Width" Value="86" />
+            <Setter Property="Padding" Value="6,8" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1FFFFFFF" />
+                    <Setter Property="BorderBrush" Value="#33FFFFFF" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid x:Name="Root" Background="#0B1B33">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="48" />
+        </Grid.RowDefinitions>
+
+        <!-- ================= Рабочий стол ================= -->
+        <Grid Grid.Row="0">
+            <Image x:Name="WallpaperImage"
+                   Source="/Assets/Wallpaper.jpg"
+                   Stretch="UniformToFill"
+                   SnapsToDevicePixels="True" />
+
+            <!-- Иконки слева сверху -->
+            <StackPanel x:Name="DesktopIcons"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Margin="12,12,0,0">
+                <Border Style="{StaticResource DesktopIcon}"
+                        MouseLeftButtonDown="OnDesktopIconClick"
+                        Tag="thispc"
+                        ToolTip="{DynamicResource L.Shell.ThisPc}">
+                    <StackPanel>
+                        <TextBlock Text="&#xE7F4;"
+                                   FontFamily="{StaticResource Font.Icons}"
+                                   FontSize="34"
+                                   Foreground="#FFFFFF"
+                                   HorizontalAlignment="Center" />
+                        <TextBlock x:Name="ThisPcLabel"
+                                   Text="{DynamicResource L.Shell.ThisPc}"
+                                   FontSize="12"
+                                   Foreground="#FFFFFF"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"
+                                   Margin="0,6,0,0" />
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource DesktopIcon}"
+                        Margin="0,4,0,0"
+                        MouseLeftButtonDown="OnDesktopIconClick"
+                        Tag="recycle"
+                        ToolTip="{DynamicResource L.Shell.RecycleBin}">
+                    <StackPanel>
+                        <TextBlock Text="&#xE74D;"
+                                   FontFamily="{StaticResource Font.Icons}"
+                                   FontSize="34"
+                                   Foreground="#FFFFFF"
+                                   HorizontalAlignment="Center" />
+                        <TextBlock Text="{DynamicResource L.Shell.RecycleBin}"
+                                   FontSize="12"
+                                   Foreground="#FFFFFF"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"
+                                   Margin="0,6,0,0" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <!-- Слой окон приложений -->
+            <Canvas x:Name="WindowCanvas"
+                    Background="Transparent"
+                    MouseRightButtonUp="OnDesktopRightClick"
+                    MouseLeftButtonDown="OnDesktopLeftClick" />
+        </Grid>
+
+        <!-- ================= Панель задач ================= -->
+        <shell:TaskbarView x:Name="Taskbar" Grid.Row="1" />
+
+        <!-- ================= Меню «Пуск» ================= -->
+        <shell:StartMenuView x:Name="StartMenu"
+                             Grid.RowSpan="2"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Bottom"
+                             Margin="0,0,0,48"
+                             Visibility="Collapsed" />
+
+        <!-- ================= Центр уведомлений ================= -->
+        <Border x:Name="ActionCenter"
+                Grid.RowSpan="2"
+                Width="360"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Margin="0,0,0,48"
+                Background="#F21F1F1F"
+                BorderBrush="#3F3F3F"
+                BorderThickness="1"
+                Visibility="Collapsed">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="24" ShadowDepth="0" Opacity="0.5" Color="#000000" />
+            </Border.Effect>
+
+            <StackPanel Margin="16">
+                <TextBlock Text="{DynamicResource L.Shell.Notifications}"
+                           FontSize="15"
+                           Foreground="#FFFFFF"
+                           Margin="0,0,0,12" />
+
+                <Border Background="#14FFFFFF" Padding="14,10" Margin="0,0,0,16">
+                    <StackPanel>
+                        <TextBlock Text="{DynamicResource L.Shell.NoNotifications}"
+                                   FontSize="12"
+                                   Foreground="#C0C0C0" />
+                        <TextBlock x:Name="NotificationLine"
+                                   FontSize="12"
+                                   Foreground="#FFFFFF"
+                                   Margin="0,6,0,0"
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                </Border>
+
+                <TextBlock Text="{DynamicResource L.Shell.QuickActions}"
+                           FontSize="12"
+                           Foreground="#B0B0B0"
+                           Margin="0,0,0,8" />
+
+                <UniformGrid Columns="2" Rows="2">
+                    <Button x:Name="QuickWifi" Style="{StaticResource Button.QuickAction}" Click="OnQuickActionClick" Tag="wifi">
+                        <StackPanel>
+                            <TextBlock Text="&#xE701;" FontFamily="{StaticResource Font.Icons}" FontSize="18" HorizontalAlignment="Center" />
+                            <TextBlock Text="{DynamicResource L.Shell.Wifi}" FontSize="11" Margin="0,6,0,0" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="QuickBluetooth" Style="{StaticResource Button.QuickAction}" Click="OnQuickActionClick" Tag="bluetooth">
+                        <StackPanel>
+                            <TextBlock Text="&#xE702;" FontFamily="{StaticResource Font.Icons}" FontSize="18" HorizontalAlignment="Center" />
+                            <TextBlock Text="{DynamicResource L.Shell.Bluetooth}" FontSize="11" Margin="0,6,0,0" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="QuickAirplane" Style="{StaticResource Button.QuickAction}" Click="OnQuickActionClick" Tag="airplane">
+                        <StackPanel>
+                            <TextBlock Text="&#xE709;" FontFamily="{StaticResource Font.Icons}" FontSize="18" HorizontalAlignment="Center" />
+                            <TextBlock Text="{DynamicResource L.Shell.Airplane}" FontSize="11" Margin="0,6,0,0" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="QuickNightLight" Style="{StaticResource Button.QuickAction}" Click="OnQuickActionClick" Tag="nightlight">
+                        <StackPanel>
+                            <TextBlock Text="&#xE706;" FontFamily="{StaticResource Font.Icons}" FontSize="18" HorizontalAlignment="Center" />
+                            <TextBlock Text="{DynamicResource L.Shell.NightLight}" FontSize="11" Margin="0,6,0,0" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                </UniformGrid>
+
+                <Button Style="{StaticResource Button.OobeLink}"
+                        Content="{DynamicResource L.Shell.AllSettings}"
+                        Margin="0,16,0,0"
+                        HorizontalAlignment="Left"
+                        Click="OnAllSettingsClick" />
+
+                <TextBlock Text="{DynamicResource L.Shell.SimNote}"
+                           FontSize="11"
+                           Foreground="#8A8A8A"
+                           Margin="0,14,0,0"
+                           TextWrapping="Wrap" />
+            </StackPanel>
+        </Border>
+
+        <!-- ================= Всплывающие уведомления ================= -->
+        <ItemsControl x:Name="Toasts"
+                      Grid.RowSpan="2"
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Bottom"
+                      Margin="0,0,16,64"
+                      Width="330">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="#F22B2B2B" BorderBrush="#4A4A4A" BorderThickness="1" Padding="14,10" Margin="0,8,0,0">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Title}" FontSize="12" FontWeight="SemiBold" Foreground="#FFFFFF" />
+                            <TextBlock Text="{Binding Message}" FontSize="12" Foreground="#D0D0D0" TextWrapping="Wrap" Margin="0,3,0,0" />
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <!-- ================= Оверлей перезагрузки / сна ================= -->
+        <Grid x:Name="SystemOverlay" Grid.RowSpan="2" Background="#000000" Visibility="Collapsed">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <controls:WindowsLogo Width="86" Height="86" HorizontalAlignment="Center" />
+                <controls:BootSpinner Width="34" Height="34" Margin="0,30,0,0" HorizontalAlignment="Center" />
+                <TextBlock x:Name="OverlayText"
+                           FontSize="16"
+                           Foreground="#FFFFFF"
+                           HorizontalAlignment="Center"
+                           Margin="0,26,0,0" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

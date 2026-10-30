@@ -171,4 +171,152 @@
     <sys:String x:Key="L.Oobe.Done.Secure">The password is never stored in state.json: only the salt and hash.</sys:String>
     <sys:String x:Key="L.Oobe.Done.Restart">Run setup again</sys:String>
 
+
+    <!-- ===== Stage 3: shell ===== -->
+    <sys:String x:Key="L.Shell.Search">Search Windows</sys:String>
+    <sys:String x:Key="L.Shell.SearchResults">Best match</sys:String>
+    <sys:String x:Key="L.Shell.NoResults">No results</sys:String>
+    <sys:String x:Key="L.Shell.AllApps">All apps</sys:String>
+    <sys:String x:Key="L.Shell.Power">Power</sys:String>
+    <sys:String x:Key="L.Shell.Shutdown">Shut down</sys:String>
+    <sys:String x:Key="L.Shell.Restart">Restart</sys:String>
+    <sys:String x:Key="L.Shell.Sleep">Sleep</sys:String>
+    <sys:String x:Key="L.Shell.SignOut">Sign out</sys:String>
+    <sys:String x:Key="L.Shell.Lock">Lock</sys:String>
+    <sys:String x:Key="L.Shell.Settings">Settings</sys:String>
+    <sys:String x:Key="L.Shell.ThisPc">This PC</sys:String>
+    <sys:String x:Key="L.Shell.RecycleBin">Recycle Bin</sys:String>
+    <sys:String x:Key="L.Shell.RecycleEmpty">Recycle Bin is empty</sys:String>
+    <sys:String x:Key="L.Shell.Create">New</sys:String>
+    <sys:String x:Key="L.Shell.Folder">Folder</sys:String>
+    <sys:String x:Key="L.Shell.TextFile">Text document</sys:String>
+    <sys:String x:Key="L.Shell.Refresh">Refresh</sys:String>
+    <sys:String x:Key="L.Shell.Personalize">Personalize</sys:String>
+    <sys:String x:Key="L.Shell.DisplaySettings">Display settings</sys:String>
+    <sys:String x:Key="L.Shell.Open">Open</sys:String>
+    <sys:String x:Key="L.Shell.Close">Close</sys:String>
+    <sys:String x:Key="L.Shell.Notifications">Notifications</sys:String>
+    <sys:String x:Key="L.Shell.NoNotifications">No new notifications</sys:String>
+    <sys:String x:Key="L.Shell.QuickActions">Quick actions</sys:String>
+    <sys:String x:Key="L.Shell.Wifi">Wi-Fi</sys:String>
+    <sys:String x:Key="L.Shell.Bluetooth">Bluetooth</sys:String>
+    <sys:String x:Key="L.Shell.Airplane">Airplane mode</sys:String>
+    <sys:String x:Key="L.Shell.NightLight">Night light</sys:String>
+    <sys:String x:Key="L.Shell.Battery">Battery</sys:String>
+    <sys:String x:Key="L.Shell.AllSettings">All settings</sys:String>
+    <sys:String x:Key="L.Shell.SimNote">Simulator: shutdown is not available, press Insert to exit</sys:String>
+
+    <!-- Lock screen -->
+    <sys:String x:Key="L.Lock.Hint">Press any key or click to unlock</sys:String>
+    <sys:String x:Key="L.Lock.Password">Password</sys:String>
+    <sys:String x:Key="L.Lock.SignIn">Sign in</sys:String>
+    <sys:String x:Key="L.Lock.WrongPassword">The password is incorrect. Try again.</sys:String>
+    <sys:String x:Key="L.Lock.Welcome">Welcome back</sys:String>
+    <sys:String x:Key="L.Lock.HintLabel">Hint</sys:String>
+    <sys:String x:Key="L.Lock.Unlocking">Welcome</sys:String>
+    <sys:String x:Key="L.Lock.NoPassword">Sign in without a password</sys:String>
+
+    <!-- Toasts -->
+    <sys:String x:Key="L.Toast.Explorer">File Explorer</sys:String>
+    <sys:String x:Key="L.Toast.Saved">File saved</sys:String>
+
+
+    <!-- ===== Stage 4: File Explorer ===== -->
+    <sys:String x:Key="L.Explorer.Open">Open</sys:String>
+    <sys:String x:Key="L.Explorer.NewFolder">New folder</sys:String>
+    <sys:String x:Key="L.Explorer.NewFile">New text document</sys:String>
+    <sys:String x:Key="L.Explorer.Delete">Delete</sys:String>
+    <sys:String x:Key="L.Explorer.Rename">Rename</sys:String>
+    <sys:String x:Key="L.Explorer.Empty">This folder is empty</sys:String>
+    <sys:String x:Key="L.Explorer.Items">Items: {0}</sys:String>
+    <sys:String x:Key="L.Explorer.Folder">File folder</sys:String>
+    <sys:String x:Key="L.Explorer.TextFile">Text document</sys:String>
+    <sys:String x:Key="L.Explorer.TypeFolder">Folder</sys:String>
+    <sys:String x:Key="L.Explorer.TypeFile">File</sys:String>
+    <sys:String x:Key="L.Explorer.ThisPc">This PC</sys:String>
+    <sys:String x:Key="L.Explorer.Desktop">Desktop</sys:String>
+    <sys:String x:Key="L.Explorer.Documents">Documents</sys:String>
+    <sys:String x:Key="L.Explorer.Downloads">Downloads</sys:String>
+    <sys:String x:Key="L.Explorer.Pictures">Pictures</sys:String>
+    <sys:String x:Key="L.Explorer.Music">Music</sys:String>
+    <sys:String x:Key="L.Explorer.Videos">Videos</sys:String>
+    <sys:String x:Key="L.Explorer.RecycleBin">Recycle Bin</sys:String>
+    <sys:String x:Key="L.Explorer.Disk">Local Disk (C:)</sys:String>
+    <sys:String x:Key="L.Explorer.Free">Free: {0} of {1}</sys:String>
+    <sys:String x:Key="L.Explorer.NameDialog.CreateFolder">New folder</sys:String>
+    <sys:String x:Key="L.Explorer.NameDialog.CreateFile">New text document.txt</sys:String>
+    <sys:String x:Key="L.Explorer.NameDialog.Rename">Rename</sys:String>
+    <sys:String x:Key="L.Explorer.NameDialog.Title">Enter a name</sys:String>
+    <sys:String x:Key="L.Explorer.Taken">An item with this name already exists.</sys:String>
+    <sys:String x:Key="L.Explorer.NotFound">The folder is unavailable.</sys:String>
+
+    <!-- ===== Stage 4: Notepad ===== -->
+    <sys:String x:Key="L.Notepad.File">File</sys:String>
+    <sys:String x:Key="L.Notepad.Edit">Edit</sys:String>
+    <sys:String x:Key="L.Notepad.View">View</sys:String>
+    <sys:String x:Key="L.Notepad.New">New</sys:String>
+    <sys:String x:Key="L.Notepad.Open">Open…</sys:String>
+    <sys:String x:Key="L.Notepad.Save">Save</sys:String>
+    <sys:String x:Key="L.Notepad.SaveAs">Save as…</sys:String>
+    <sys:String x:Key="L.Notepad.Exit">Exit</sys:String>
+    <sys:String x:Key="L.Notepad.Undo">Undo</sys:String>
+    <sys:String x:Key="L.Notepad.Cut">Cut</sys:String>
+    <sys:String x:Key="L.Notepad.Copy">Copy</sys:String>
+    <sys:String x:Key="L.Notepad.Paste">Paste</sys:String>
+    <sys:String x:Key="L.Notepad.SelectAll">Select all</sys:String>
+    <sys:String x:Key="L.Notepad.TimeDate">Time and date</sys:String>
+    <sys:String x:Key="L.Notepad.WordWrap">Word wrap</sys:String>
+    <sys:String x:Key="L.Notepad.StatusBar">Line {0}, column {1}</sys:String>
+    <sys:String x:Key="L.Notepad.Saved">Saved: {0}</sys:String>
+    <sys:String x:Key="L.Notepad.Untitled">Untitled</sys:String>
+    <sys:String x:Key="L.Notepad.AutoSaved">Autosaved</sys:String>
+    <sys:String x:Key="L.Notepad.Dialog.Title">Open file</sys:String>
+    <sys:String x:Key="L.Notepad.Dialog.SaveTitle">Save as</sys:String>
+    <sys:String x:Key="L.Notepad.Dialog.FileName">File name</sys:String>
+    <sys:String x:Key="L.Notepad.Dialog.Folder">Folder</sys:String>
+    <sys:String x:Key="L.Notepad.Dialog.Empty">There are no text files in this folder</sys:String>
+
+    <!-- ===== Stage 4: Command prompt ===== -->
+    <sys:String x:Key="L.Cmd.Title">Command Prompt</sys:String>
+    <sys:String x:Key="L.Cmd.Hint">Type help for the command list. Ctrl+C — cancel, Tab — complete.</sys:String>
+
+    <!-- ===== Stage 4: Edge ===== -->
+    <sys:String x:Key="L.Edge.Address">Search or enter a web address</sys:String>
+    <sys:String x:Key="L.Edge.NewTab">New tab</sys:String>
+    <sys:String x:Key="L.Edge.Loading">Loading…</sys:String>
+    <sys:String x:Key="L.Edge.NoRuntime">WebView2 could not start: the Microsoft Edge WebView2 Runtime is not installed on this computer. Install it from Microsoft and reopen the browser.</sys:String>
+    <sys:String x:Key="L.Edge.Error">Could not open the page: {0}</sys:String>
+    <sys:String x:Key="L.Edge.Home">Home</sys:String>
+    <sys:String x:Key="L.Edge.Back">Back</sys:String>
+    <sys:String x:Key="L.Edge.Forward">Forward</sys:String>
+    <sys:String x:Key="L.Edge.Refresh">Refresh</sys:String>
+
+    <!-- ===== Stage 4: Settings ===== -->
+    <sys:String x:Key="L.Settings.Title">Settings</sys:String>
+    <sys:String x:Key="L.Settings.System">System</sys:String>
+    <sys:String x:Key="L.Settings.Personalization">Personalization</sys:String>
+    <sys:String x:Key="L.Settings.TimeLanguage">Time &amp; language</sys:String>
+    <sys:String x:Key="L.Settings.Accounts">Accounts</sys:String>
+    <sys:String x:Key="L.Settings.About">About</sys:String>
+    <sys:String x:Key="L.Settings.DeviceName">Device name</sys:String>
+    <sys:String x:Key="L.Settings.Edition">Windows edition</sys:String>
+    <sys:String x:Key="L.Settings.Version">Version</sys:String>
+    <sys:String x:Key="L.Settings.Processor">Processor</sys:String>
+    <sys:String x:Key="L.Settings.Memory">Installed RAM</sys:String>
+    <sys:String x:Key="L.Settings.User">User</sys:String>
+    <sys:String x:Key="L.Settings.Theme">App theme</sys:String>
+    <sys:String x:Key="L.Settings.ThemeDark">Dark</sys:String>
+    <sys:String x:Key="L.Settings.ThemeLight">Light</sys:String>
+    <sys:String x:Key="L.Settings.Language">Display language</sys:String>
+    <sys:String x:Key="L.Settings.ClockFormat">Clock format</sys:String>
+    <sys:String x:Key="L.Settings.Clock24">24-hour</sys:String>
+    <sys:String x:Key="L.Settings.Clock12">12-hour</sys:String>
+    <sys:String x:Key="L.Settings.Password">Account password</sys:String>
+    <sys:String x:Key="L.Settings.PasswordSet">Set (PBKDF2-SHA256 hash)</sys:String>
+    <sys:String x:Key="L.Settings.PasswordNone">Not set</sys:String>
+    <sys:String x:Key="L.Settings.DiskUsage">Virtual drive C:</sys:String>
+    <sys:String x:Key="L.Settings.Applied">Changes applied.</sys:String>
+
+    <sys:String x:Key="L.Notepad.Title">Notepad</sys:String>
+
 </ResourceDictionary>

@@ -1,7 +1,10 @@
 using System.IO;
 using Win10Sim.App.Localization;
+using Win10Sim.App.Shell;
+using Win10Sim.Core.FileSystem;
 using Win10Sim.Core.Persistence;
 using Win10Sim.Core.Setup;
+using Win10Sim.Core.Shell;
 
 namespace Win10Sim.App.Infrastructure;
 
@@ -24,6 +27,12 @@ public sealed class AppServices
         Session = Store.Load();
         Disks = DiskFactory.CreateDefault();
         Localization = new LocalizationService();
+        Settings = DesktopSettings.Load();
+
+        // «Диск C:» один на всё приложение: Проводник, Блокнот и cmd видят одно дерево.
+        FileSystem = new VirtualFileSystem(AppPaths.VirtualFileSystemFile, Session.UserName ?? "user");
+        CommandProcessor = new CommandProcessor(FileSystem, Session.UserName ?? "user");
+        Windows = new SimWindowManager();
     }
 
     public IAppHost Host { get; set; } = NullAppHost.Instance;
@@ -37,6 +46,22 @@ public sealed class AppServices
     public IReadOnlyList<DiskInfo> Disks { get; }
 
     public LocalizationService Localization { get; }
+
+    /// <summary>Виртуальный диск C:.</summary>
+    public IVirtualFileSystem FileSystem { get; }
+
+    /// <summary>Командная строка: рабочая папка сохраняется между открытиями cmd.</summary>
+    public CommandProcessor CommandProcessor { get; }
+
+    /// <summary>Менеджер внутренних окон рабочего стола.</summary>
+    public SimWindowManager Windows { get; }
+
+    public DesktopSettings Settings { get; }
+
+    /// <summary>Имя пользователя из OOBE (или "user", если установка ещё не дошла до него).</summary>
+    public string UserName => Session.Account?.UserName ?? Session.UserName ?? "user";
+
+    public string DisplayName => Session.Account?.DisplayName ?? Session.UserDisplayName ?? UserName;
 
     /// <summary>Сохраняет фазу на диск. Вызывается BootFlow после каждого перехода.</summary>
     public void SaveState()

@@ -18,4 +18,16 @@
     <ProjectReference Include="..\Win10Sim.Core\Win10Sim.Core.csproj" />
   </ItemGroup>
 
+  <!-- Пакеты только для ЭТАПА 4: WebView2 — настоящий Edge в окне симулятора.
+       Версия фиксирована: при обновлении WebView2 Runtime на машине пользователя
+       поведение виджета не должно меняться неожиданно. -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2903.40" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Обои рабочего стола и экрана блокировки -->
+    <Resource Include="Assets\Wallpaper.jpg" />
+  </ItemGroup>
+
 </Project>
